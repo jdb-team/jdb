@@ -6,6 +6,7 @@ import com.ezb.jdb.model.Message;
 import org.springframework.stereotype.Repository;
 
 import java.text.MessageFormat;
+import java.util.List;
 
 /**
  * author : liufeng
@@ -13,6 +14,12 @@ import java.text.MessageFormat;
  */
 @Repository
 public class MessageDao extends BaseDao<Message> {
+
+    public List<Message> queryAll(){
+        String hql = "from Message message";
+        return query(hql);
+    }
+
     public Integer unReadCount(String phone) {
         String hql = "from Message o where o.receiver.username=''{0}'' and o.state=0";
         return queryCount(MessageFormat.format(hql, phone));

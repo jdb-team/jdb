@@ -17,14 +17,14 @@ public class ResponseData {
      *
      * @param code
      * @param errorInfo
-     * @param list
+     * @param object
      * @return
      */
-    public static String getResData(String code, String errorInfo, List<Object> list) {
+    public static String getResData(String code, String errorInfo, Object object) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("code", code);
         jsonObject.put("error", errorInfo);
-        jsonObject.put("data", list);
+        jsonObject.put("data", object);
         return JSONObject.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect, SerializerFeature.WriteMapNullValue);
     }
 
@@ -35,10 +35,6 @@ public class ResponseData {
      * @return
      */
     public static String getResData(Object data) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("code", "0");
-        jsonObject.put("error", "");
-        jsonObject.put("data", data);
-        return JSONObject.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect, SerializerFeature.WriteMapNullValue);
+        return getResData("0", "", data);
     }
 }

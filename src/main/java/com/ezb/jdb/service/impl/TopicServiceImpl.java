@@ -106,7 +106,11 @@ public class TopicServiceImpl implements ITopicService {
             }
             TopicType topicType = topicTypeDao.get(TopicType.class, topic.getTopicType().getId());
             topic.setTopicType(topicType);
-            topic.setPicPath(rpath);
+
+            if(!StringUtils.isEmpty(rpath)){
+                topic.setPicPath(rpath);
+            }
+
             topic.setCreateUser(user);
             topic.setCreateTime(new Date());
             topic.setPv(0);

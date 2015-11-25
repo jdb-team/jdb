@@ -26,7 +26,7 @@ public class TopicDao extends BaseDao<Topic> {
         List<Object> paramList = new ArrayList<Object>();
         int pIndex = 0;
 
-        String hql = "from Topic topic where topic.state=1";
+        String hql = "from Topic topic where topic.state=1 ";
 
         if (!StringUtils.isEmpty(phone)) {
             //查询指定phone用户的话题列表
@@ -37,7 +37,7 @@ public class TopicDao extends BaseDao<Topic> {
 
             //过滤掉屏蔽的用户话题
             if (null != isShield && isShield) {
-                hql += "and topic.createUser.id not in (select o.shieldUser.id from" +
+                hql += " and topic.createUser.id not in (select o.shieldUser.id from" +
                         " ShieldUser o where o.curUser.username=''{" + pIndex++ + "}'')";
                 paramList.add(phone);
             }
