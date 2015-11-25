@@ -1,4 +1,4 @@
-# jdb
+# jdb-team
 
 框架：
 
@@ -8,4 +8,5 @@
 
 工具推荐 idea 
 
-版本控制 github: https://github.com/liufengking/jdb
+版本控制 github: https://github.com/jdb-team/jdb.git
+
