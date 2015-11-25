@@ -201,19 +201,27 @@ public class TopicServiceImpl implements ITopicService {
     }
 
     public String shield(String phone, String tphone) {
+
         User user = userDao.queryByPhone(phone);
+
         if (null == user) {
             return ResponseState.INVALID_PHONE;
         }
+
         User tuser = userDao.queryByPhone(tphone);
         if (null == tuser) {
             return ResponseState.INVALID_PHONE;
         }
-        ShieldUser shieldUser = new ShieldUser();
-        shieldUser.setCurUser(user);
-        shieldUser.setShieldUser(tuser);
-        shieldUser.setType(NavType.TOPIC.toString());
-        shieldDao.add(shieldUser);
+
+        //不重复屏蔽
+        if(shieldDao.queryBy2Phone(phone,tphone) == null){
+            ShieldUser shieldUser = new ShieldUser();
+            shieldUser.setCurUser(user);
+            shieldUser.setShieldUser(tuser);
+            shieldUser.setType(NavType.TOPIC.toString());
+            shieldDao.add(shieldUser);
+        }
+
         return ResponseState.SUCCESS;
     }
 }
