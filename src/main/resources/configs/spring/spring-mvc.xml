@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+       http://www.springframework.org/schema/tx
+	   http://www.springframework.org/schema/tx/spring-tx.xsd
+	   http://www.springframework.org/schema/aop
+	   http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+
+    <context:property-placeholder location="classpath:configs/properties/config.properties"/>
+    <context:component-scan base-package="com.ezb.jdb" use-default-filters="false">
+        <context:include-filter type="annotation" expression="javax.persistence.Entity"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+        <context:include-filter type="annotation" expression="org.springframework.scheduling.annotation.Scheduled"/>
+    </context:component-scan>
+
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>text/html;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config expose-proxy="true">
+        <aop:pointcut id="mobileControllerMethod" expression="execution(* com.ezb.jdb.controller.mobile.*.*(..))"/>
+        <aop:pointcut id="adminControllerMethod" expression="execution(* com.ezb.jdb.controller.pc.admin.*.*(..))"/>
+        <aop:pointcut id="scheduleControllerMethod" expression="execution(* com.ezb.jdb.schedule.*.*(..))"/>
+        <aop:advisor pointcut-ref="mobileControllerMethod" advice-ref="txAdvice"/>
+        <aop:advisor pointcut-ref="adminControllerMethod" advice-ref="txAdvice"/>
+        <aop:advisor pointcut-ref="scheduleControllerMethod" advice-ref="txAdvice"/>
+    </aop:config>
+
+    <task:executor id="executor" pool-size="1"/>
+    <task:scheduler id="scheduler" pool-size="3"/>
+    <task:annotation-driven executor="executor" scheduler="scheduler"/>
+
+    <mvc:annotation-driven/>
+
+    <mvc:default-servlet-handler/>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/mobile/activity/**"/>
+            <mvc:mapping path="/mobile/circle/**"/>
+            <mvc:mapping path="/mobile/friend/**"/>
+            <mvc:mapping path="/mobile/index/**"/>
+            <mvc:mapping path="/mobile/inform/**"/>
+            <mvc:mapping path="/mobile/message/**"/>
+            <mvc:mapping path="/mobile/topic/**"/>
+            <bean class="com.ezb.jdb.interceptor.mobile.MobileInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/pc/admin/**"/>
+            <bean class="com.ezb.jdb.interceptor.pc.admin.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+</beans>
+

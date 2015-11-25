@@ -1,0 +1,415 @@
+.fl{
+    float: left;
+}
+.fr{
+     float: right;
+ }
+.home{
+    min-height: 700px;
+}
+.home1{
+    min-height: 700px;
+}
+.notice,
+.noticeRight{
+    position: relative;
+    border: 1px solid #00b7ee;
+    min-height: 300px;
+}
+.notice{
+    width: 63%;
+}
+.noticeRight{
+    width: 35%;
+}
+.notice h2,
+.notice h3,
+.noticeRight h2{
+    position: absolute;
+    width: 60px;
+    background: #fff;
+    top: -10px;
+    left: 8px;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+.notice h2{
+    width: 60px;
+}.notice h3{
+    width: 100px;
+}
+.noticeRight h2{
+    width: 150px;
+}
+.noticeUl{
+    font-size: 14px;
+    color: #333;
+    padding-left: 25px;
+}
+.noticeUl li{
+    padding-top: 15px;
+}
+.administrator{
+    border: 1px solid #D5D4D4;
+    background: #f8f8f8;
+    padding: 15px 15px 5px 0;
+}
+.administrator input{
+    width: auto;
+    max-width: 150px;
+}
+.administrator .gx-texttitle{
+    width: 80px;
+    text-align: right;
+}
+.admin-btn{
+    margin-top: 5px;
+}
+/*系统管理员*/
+.tab{
+    text-align: center;
+    width: 100%;
+}
+.tab-h{
+    background: #E9E9E9;
+}
+.tab-six b{
+    font-weight: normal;
+}
+/*新建系统管理员弹窗*/
+.newPop{
+    position: fixed;
+    width: 500px;
+    height: 273px;
+    top: 50%;
+    margin-top: -134px;
+    left: 50%;
+    margin-left: -200px;
+    border: 2px solid #00b7ee;
+    padding: 20px 10px;
+    z-index: 9999;
+    background: #fff;
+}
+.newPop-menu{
+    /*border: 1px solid #00b7ee;*/
+    position: relative;
+    /*height: 282px;*/
+}
+.newPop-menu h2,
+.noticeRight h2{
+    position: absolute;
+    width: 60px;
+    background: #fff;
+    top: -10px;
+    left: 8px;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+.newPop-menu h2{
+    width: 200px;
+}
+.noticeRight h2{
+    width: 150px;
+}
+.newPop-menu ul{
+    padding: 30px 30px 20px 30px;
+}
+.newPop-menu ul li{
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.newPop-menu ul li label{
+    display: block;
+    width: 80px;
+    float: left;
+}
+.newPop-menu ul li span{
+    color: #f00;
+}
+.newpop-tet{
+    width: 350px;
+    height: 20px;
+    float: left;
+}
+.addCancle{
+    overflow: hidden;
+    text-align: center;
+}
+.addCancle a,
+.addCancle button{
+    display: inline-block;
+    margin: 0 13px;
+}
+
+.group-item{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.group-item span{
+    padding: 0 10px;
+}
+.homeSetting{
+    min-height: 660px;
+    width: 100%;
+}
+
+.homeSetting h2,
+.homeSettingM h2{
+    background: #fff;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+.homeSetting dl{
+    width: 31%;
+    float: left;
+    margin-right:2%;
+    margin-bottom: 3%;
+    border:1px #EEE solid;
+    padding: 10px 8px 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.homeSelect{
+    overflow: hidden;
+}
+.homeSelect select{
+    border: 1px solid #c8c8c8;
+}
+.homeSelect label,
+.homeAction label{
+    font-size: 12px;
+}
+.home-but,
+.inputSub{
+    width: 100px;
+    line-height: 17px;
+    text-align: center;
+    border: 1px solid #c8c8c8;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 12px;
+}
+.homeAction{
+    margin-top: 20px;
+}
+.homeAction input{
+    font-size: 12px;
+    width: 66%;
+}
+.home-pic{
+    padding-top: 15px;
+}
+.ui-form-item {
+    font-size: 16px;
+    position: relative;
+}
+
+.bef-file {
+    position: relative;
+    display: block;
+    border: 1px solid #c8c8c8;
+    font-size: 12px;
+    width: 100px;
+    border-radius: 5px;
+    padding: 3px 0px;
+    overflow: hidden;
+    color: #333;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 10px;
+    text-align: center;
+}
+
+.bef-file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.bef-file:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
+
+.homeDetails{
+    font-size: 12px;
+    color: #666;
+    padding-left: 16em;
+    padding-top: 10px;
+}
+.homeWord{
+    height: 60px;
+}
+.homeWordbtn{
+    padding-top: 10px;
+    padding-left: 10em;
+}
+.homewordT{
+    padding-left: 35px;
+}
+.home-butM{
+    margin-left: 20px;
+}
+.homeSettingM{
+    margin-top: 30px;
+    height: 400px;
+    width: 100%;
+    padding-top: 20px;
+}
+.homeSettingH{
+    font-size: 12px;
+    color: #333;
+    font-weight: bold;
+    padding-left: 10px;
+}
+.homesT{
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    border-bottom: none;
+    overflow: hidden;
+}
+.homesLeft,
+.homesRight{
+    border-right: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    width: 50%;
+    margin-right:-1px;
+}
+.homesLeft dl{
+    padding-left: 20px;
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+.homesLeft dt{
+    float: left;
+    width: 60px;
+    height: 60px;
+}
+.homesLeft dt img{
+    width: 100%;
+    height: 100%;
+}
+.homesLeft dd{
+    float: left;
+    padding-left: 15px;
+}
+.homesLeft dd p{
+    font-size: 14px;
+    color: #666;
+}
+.homesLeft dd a{
+    font-size: 12px;
+    color: #999;
+    display: block;
+    width: 204px;
+    border-collapse:collapse;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.homesRight{
+    padding-top: 34px;
+    height: 60px;
+}
+.homeRightBtn{
+    width: 70%;
+    padding-left: 40px;
+}
+.homeRightBtn label{
+    font-size: 12px;
+}
+.homeRightBtn input{
+    width: 70%;
+    height: 20px;
+}
+
+/*举报管理*/
+.gx-textbox{
+    width: auto;
+}
+.tab-six a,
+.tab-Nine a,
+.stop-user{
+    font-size: 12px;
+    color: #fff;
+}
+.gx-texttitle1{
+    padding-left: 10px;
+}
+.group-detdil{
+    padding: 20px 20px 20px 20px;
+    border-bottom:1px solid #c8c8c8;
+    overflow: hidden;
+    margin: 0 10px;
+}
+.group-detdil span{
+    width: 56px;
+    display: inline-block;
+    text-align: right;
+}
+.detdilCenter{
+    padding-left:10%;
+}
+.detail-close{
+    margin: 20px;
+}
+.homeWord .gx-submit-btn{
+    text-align: left;
+    border-top: 1px #e5e5e5 solid;
+    padding: 20px 0;
+}
+.homeWord .gx-submit-btn a,
+.homeWord .gx-submit-btn button{
+    margin-left: 26px;
+    padding: 4px 34px;
+}
+
+.home-pic .gx-file-input{
+    margin: 0;
+}
+
+.homeSettingM .homeWord .gx-submit-btn{
+    border: none;
+}
+.group-detdil-btn{
+    text-align: right;
+    padding: 10px;
+}
+.group-detdil-btn button,
+.group-detdil-btn a{
+    padding: 0 14px;
+}
+.detail-right{
+    width: 60px;
+    height: 60px;
+}
+.detail-right img{
+    width: 100%;
+    height: 100%;
+}
+.administrator-margin{
+    margin: 10px 0;
+}
+.homeSettingM h2{
+    border-bottom: 1px solid #e5e5e5;
+}
+.gx-button{
+    cursor: pointer;
+}
+.activity .group-detdil span {
+    width: 100px;
+}
+.activity .content {
+    margin-left: 100px;
+}

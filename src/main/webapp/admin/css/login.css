@@ -1,0 +1,136 @@
+/*登陆页面背景*/
+.loginBg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+}
+
+.login {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    top: 50px;
+    left: 0;
+}
+
+/*登陆页面logo*/
+.login-title {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    background: url(../img/logo.png) no-repeat center;
+    -webkit-background-size: contain;
+    background-size: contain;
+}
+
+/*登陆页面主体*/
+.login-menu {
+    width: 850px;
+    margin: 10px auto 20px;
+    height: 404px;
+    background: url(../img/bg-main.png) no-repeat;
+    background-size: 100%;
+}
+
+.login-menu h2 {
+    color: #0f7daf;
+    font-size: 26px;
+    text-align: center;
+    padding-top: 55px;
+}
+
+.login-menu ul {
+    padding: 10px 0 0 266px;
+    margin: 0;
+}
+
+.login-menu ul li {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.login-menu li span {
+    display: inline;
+    line-height: 32px;
+    width: 78px;
+    color: #565656;
+    font-size: 18px;
+    float: left;
+    text-align: right;
+}
+
+.login-menu li i {
+    display: block;
+    float: left;
+    margin-left: 10px;
+    width: 90px;
+    height: 30px;
+}
+
+.login-menu li i img {
+    width: 90px;
+    height: 30px;
+    background: 100%;
+}
+
+.inputText,
+.inputCode {
+    height: 30px;
+    background: url(../img/textBg.png) repeat-x;
+    border: 1px solid #a9bdc4;
+    float: left;
+    padding: 0;
+}
+
+.inputText {
+    width: 180px;
+    padding: 0 10px;
+}
+
+.inputCode {
+    width: 80px;
+}
+
+.ui-btn {
+    padding: 5px 0 5px 343px;
+    overflow: hidden;
+}
+
+.uiBtn {
+    display: block;
+    margin-top: 9px;
+    background: #f00;
+    float: left;
+}
+
+.ui-btn b {
+    float: left;
+    display: block;
+    padding: 4px 0 0 10px;
+    font-weight: normal;
+    color: #565656;
+    font-size: 14px;
+}
+
+.inputSub {
+    width: 70px;
+    height: 30px;
+    display: block;
+    float: left;
+    background: url(../img/btnBg.jpg) repeat-x;
+    border: 1px solid #7a95a4;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+
+
+
+
+
+
+
+
