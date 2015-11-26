@@ -154,6 +154,18 @@ public class ActivityController {
     }
 
     /**
+     * 取消活动报名
+     *
+     * @return
+     */
+    @RequestMapping(value = "mobile/activity/unsignup")
+    public
+    @ResponseBody
+    String unsignup(String phone, Integer id) {
+        return activityServiceImpl.unsignup(phone, id);
+    }
+
+    /**
      * 参加活动的详细名单
      *
      * @return

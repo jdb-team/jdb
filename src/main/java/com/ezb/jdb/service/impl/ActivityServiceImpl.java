@@ -131,7 +131,7 @@ public class ActivityServiceImpl implements IActivityService {
         }
 
         List<AtvCmt> comments = atvCmtDao.qAtvCmtByActivityId(id);
-        for(AtvCmt atvCmt : comments){
+        for (AtvCmt atvCmt : comments) {
             atvCmt.setChildCmtCount(atvCmtDao.qAtvCountCmtByPId(atvCmt.getParentAtvCmt().getId()));
         }
 
@@ -198,5 +198,21 @@ public class ActivityServiceImpl implements IActivityService {
         } else {
             return ResponseState.INVALID_PHONE;
         }
+    }
+
+    public String unsignup(String phone, Integer id) {
+        User user = userDao.queryByPhone(phone);
+        if (null == user) {
+            return ResponseState.INVALID_PHONE;
+        }
+        Activity activity = activityDao.get(Activity.class, id);
+        if (null == activity) {
+            return ResponseState.INVALID_ID;
+        }
+        if (null != activity.getJoinUsers()) {
+            activity.getJoinUsers().remove(user);
+        }
+        activityDao.update(activity);
+        return ResponseState.SUCCESS;
     }
 }

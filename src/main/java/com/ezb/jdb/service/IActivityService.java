@@ -54,4 +54,12 @@ public interface IActivityService {
     String state(Integer id);
 
     String viewActivity( String phone,Integer id);
+
+    /**
+     * 取消活动报名
+     * @param phone
+     * @param id
+     * @return
+     */
+    String unsignup(String phone, Integer id);
 }
