@@ -2,28 +2,25 @@ package com.ezb.jdb.model;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 单聊消息
+ * 圈子群聊消息
  * author : liufeng
- * create time: 2015/8/5 13:53.
+ * create time:2015/11/26 9:57
  */
 @Data
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "message")
+@Table(name = "circlemessage")
 @DynamicUpdate
-public class Message extends Fmodel {
+public class CircleMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,9 +29,6 @@ public class Message extends Fmodel {
     @Column
     @Type(type="text")
     private String content;
-
-    @Column
-    private Integer state;//0未查看 1已查看
 
     @Column(name = "c_time")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
@@ -47,7 +41,6 @@ public class Message extends Fmodel {
 
     @ManyToOne
     @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name = "receive_userid")
-    private User receiver;//接收者
-
+    @JoinColumn(name = "circle_id")
+    private Circle circle;//发送者
 }

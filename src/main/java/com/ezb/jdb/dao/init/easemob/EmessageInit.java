@@ -44,7 +44,12 @@ public class EmessageInit {
             ObjectNode sendTxtMessageusernode = Messages.sendMessages(targetTypeus, targetusers, txtmsg, from, ext);
 
             if (null != sendTxtMessageusernode) {
-                log.info("cur:" + i + "/" + list.size());
+                try {
+                    Thread.sleep(2000);
+                    log.info("cur:" + i + "/" + list.size());
+                } catch (InterruptedException e) {
+                    log.error(e.getMessage());
+                }
             }
         }
     }

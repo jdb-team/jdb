@@ -32,12 +32,12 @@ public class TopicContollerTest extends TestCase {
         PageResult<Topic> pageResult = new PageResult<Topic>();
         pageResult.setPageSize(10);
         pageResult.setCurPage(1);
-        log.info(topicController.query(pageResult, "1111111", null, null, "3", true, false));
+        log.info(topicController.query(pageResult, "13327689964", null, null, "2", false, false));
     }
 
     @Test
     public void viewTopic() {
-        log.info(topicController.view("1111111", 1000));
+        log.info(topicController.view("10000000001", 1000));
     }
 
     @Test
@@ -63,6 +63,12 @@ public class TopicContollerTest extends TestCase {
     @Test
     @Rollback(false)
     public void likeTopicCmt() {
-        log.info(topicController.likeTopicCmt("11111110", 1));
+        log.info(topicController.likeTopicCmt("10000000001", 1));
+    }
+
+    @Test
+    @Rollback(false)
+    public void shield(){
+        log.info(topicController.shield("10000000001","10000000069"));
     }
 }

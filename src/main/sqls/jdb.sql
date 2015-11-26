@@ -600,3 +600,23 @@ CREATE TABLE `shielduser` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   COMMENT '用户屏蔽表';
+
+
+-- ----------------------------
+-- Table structure for `circlemessage`
+-- ----------------------------
+CREATE TABLE `circlemessage` (
+  `id`            INT(11) NOT NULL AUTO_INCREMENT
+  COMMENT '主键',
+  `content`       LONGTEXT,
+  `c_time`        DATETIME         DEFAULT NULL
+  COMMENT '消息内容',
+  `circle_id`     INT(11)          DEFAULT NULL
+  COMMENT '圈子id',
+  `sender_userid` INT(11)          DEFAULT NULL
+  COMMENT '发送者id',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COMMENT '圈子群聊消息表';

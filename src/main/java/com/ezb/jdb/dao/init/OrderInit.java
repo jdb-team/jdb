@@ -3,6 +3,7 @@ package com.ezb.jdb.dao.init;
 import com.ezb.jdb.common.JdbConstants;
 import com.ezb.jdb.dao.init.easemob.EcircleInit;
 import com.ezb.jdb.dao.init.easemob.EfriendInit;
+import com.ezb.jdb.dao.init.easemob.EmessageInit;
 import com.ezb.jdb.dao.init.easemob.EuserInit;
 import com.ezb.jdb.dao.init.jdb.*;
 import com.ezb.jdb.easemob.comm.Constants;
@@ -71,6 +72,9 @@ public class OrderInit {
     @Resource
     private EcircleInit ecircleInit;
 
+    @Resource
+    private EmessageInit emessageInit;
+
     /**
      * 交大邦祥光数据初始化
      */
@@ -136,6 +140,9 @@ public class OrderInit {
 
         ecircleInit.init();
         log.info("end init circle");
+
+        emessageInit.init();
+        log.info("end init message");
 
         log.info("=============== end initEaseMob ==============");
     }
