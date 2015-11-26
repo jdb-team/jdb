@@ -45,7 +45,13 @@ public class EcircleInit {
             arrayNode.add("2");
             objectNode.put("members", arrayNode);
 
-            ChatGroups.creatChatGroups(objectNode);
+            ObjectNode resultNode = ChatGroups.creatChatGroups(objectNode);
+            if(null != resultNode){
+                circle.setEid(resultNode.path("data").get("groupid").asText());
+            }
+
+            circleDao.update(circle);
+
             try {
                 Thread.sleep(2000);
                 log.info("cur:" + i + "/" + list.size());

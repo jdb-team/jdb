@@ -110,7 +110,7 @@ public class Messages {
 
 		// check appKey format
 		if (!JerseyUtils.match("^(?!-)[0-9a-zA-Z\\-]+#[0-9a-zA-Z]+", APPKEY)) {
-			LOGGER.error("Bad format of Appkey: " + APPKEY);
+			LOGGER.info("Bad format of Appkey: " + APPKEY);
 
 			objectNode.put("message", "Bad format of Appkey");
 
@@ -143,9 +143,9 @@ public class Messages {
 			for (int i = 0; i < target.size(); i++) {
 				String resultStr = objectNode.path(target.path(i).asText()).asText();
 				if ("success".equals(resultStr)) {
-					LOGGER.error(String.format("Message has been send to user[%s] successfully .", target.path(i).asText()));
+					LOGGER.info(String.format("Message has been send to user[%s] successfully .", target.path(i).asText()));
 				} else if (!"success".equals(resultStr)) {
-					LOGGER.error(String.format("Message has been send to user[%s] failed .", target.path(i).asText()));
+					LOGGER.info(String.format("Message has been send to user[%s] failed .", target.path(i).asText()));
 				}
 			}
 

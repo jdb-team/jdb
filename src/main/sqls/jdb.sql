@@ -181,6 +181,8 @@ CREATE TABLE `atvcmt` (
 CREATE TABLE `circle` (
   `id`            INT(11) NOT NULL AUTO_INCREMENT
   COMMENT '主键',
+  `eid`           VARCHAR(32)      DEFAULT NULL
+  COMMENT '在环信服务器上的id',
   `c_time`        DATETIME         DEFAULT NULL
   COMMENT '创建时间',
   `iconpath`      VARCHAR(255)     DEFAULT NULL

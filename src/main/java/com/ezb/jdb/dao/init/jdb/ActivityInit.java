@@ -38,9 +38,9 @@ public class ActivityInit {
             activity.setContactPhone("contactphone" + String.valueOf(i));
             activity.setCreateTime(new Date());
             activity.setEndTime(new Date());
-            activity.setJoinFee("joinfee" + String.valueOf(i));
 
             Random rd = new Random();
+            activity.setJoinFee(rd.nextInt(1000) + "");
             int picPathId = rd.nextInt(3);
 
             String[] picPath = {"uploadfiles/20150811/20150811111719207/pic1.jpg",

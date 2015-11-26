@@ -24,6 +24,9 @@ public class Circle {
     private Integer id;
 
     @Column(length = 32)
+    private String eid;//在环信服务器上的id 如果为空，说明还未在环信上初始化
+
+    @Column(length = 32)
     private String title;
 
     @Column(name = "iconpath", length = 255)
