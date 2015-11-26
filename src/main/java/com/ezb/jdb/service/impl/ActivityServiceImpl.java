@@ -53,12 +53,12 @@ public class ActivityServiceImpl implements IActivityService {
     @Resource
     private AccessKeyDao accessKeyDao;
 
-    public String queryActivity(PageResult<Activity> pageResult, String phone, String queryWords) {
+    public String queryActivity(PageResult<Activity> pageResult, String phone, String queryWords,String city) {
         User user = userDao.queryByPhone(phone);
         if (null == user) {
             return ResponseState.INVALID_PHONE;
         }
-        pageResult = activityDao.queryActivity(pageResult, queryWords);
+        pageResult = activityDao.queryActivity(pageResult, queryWords,city);
         return ActivityView.convert2Json(pageResult.getResultList(), user);
     }
 

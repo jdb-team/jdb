@@ -33,9 +33,9 @@ public class InformControllerTest {
     @Test
     @Rollback(false)
     public void createInform(){
-        log.info(informController.createInform("11111196",null));
+        log.info(informController.createInform("10000000006",null));
 
-        User user = userServiceImpl.queryUserByPhone("11111112");
+        User user = userServiceImpl.queryUserByPhone("10000000008");
         Inform inform = new Inform();
         inform.setAssoId(user.getId());
         inform.setAssoName(user.getAlumnus().getRealName());

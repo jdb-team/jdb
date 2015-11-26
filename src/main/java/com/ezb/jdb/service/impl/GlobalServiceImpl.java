@@ -44,7 +44,7 @@ public class GlobalServiceImpl implements IGlobalService {
             PageResult<Friend> friendPageResult, String keyword) {
 
         circlePageResult = circleDao.queryCircles(circlePageResult, keyword);
-        activityPageResult = activityDao.queryActivity(activityPageResult, keyword);
+        activityPageResult = activityDao.queryActivity(activityPageResult, keyword,"");
         topicPageResult = topicDao.queryTopic(topicPageResult, keyword);
         friendPageResult = friendDao.queryFriend(friendPageResult, phone, keyword, 1);
 

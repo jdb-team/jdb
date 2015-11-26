@@ -59,8 +59,8 @@ public class ActivityController {
     @RequestMapping(value = "mobile/activity/queryactivity")
     public
     @ResponseBody
-    String queryActivity(PageResult<Activity> pageResult, String phone, String queryWords) {
-        return activityServiceImpl.queryActivity(pageResult, phone, queryWords);
+    String queryActivity(PageResult<Activity> pageResult, String phone, String queryWords,String city) {
+        return activityServiceImpl.queryActivity(pageResult, phone, queryWords,city);
     }
 
     /**

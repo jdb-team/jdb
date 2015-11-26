@@ -45,6 +45,7 @@ public class UserDao extends BaseDao<User> {
         List<Object> paramList = new ArrayList<Object>();
 
         User user = queryByPhone(phone);
+
         Double lat = user.getAlumnus().getLat();
         Double lng = user.getAlumnus().getLng();
 

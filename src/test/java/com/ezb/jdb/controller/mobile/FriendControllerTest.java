@@ -34,12 +34,12 @@ public class FriendControllerTest {
         PageResult<Friend> pageResult = new PageResult<Friend>();
         pageResult.setCurPage(1);
         pageResult.setPageSize(10);
-        log.info(friendController.queryFriend(pageResult, "11111193", null, 1));
-        log.info(friendController.queryFriend(pageResult, "11111193", null, 0));
+        log.info(friendController.queryFriend(pageResult, "10000000003", null, 1));
+        log.info(friendController.queryFriend(pageResult, "10000000003", null, 0));
 
-        log.info(friendController.queryFriend(pageResult, "11111196",null, 1));
-        log.info(friendController.queryFriend(pageResult, "11111196","realname64", 1));
-        log.info(friendController.queryFriend(pageResult, "11111196","realname44", 1));
+        log.info(friendController.queryFriend(pageResult, "10000000006",null, 1));
+        log.info(friendController.queryFriend(pageResult, "10000000006","realname64", 1));
+        log.info(friendController.queryFriend(pageResult, "10000000006","realname44", 1));
     }
 
     @Test
@@ -51,7 +51,7 @@ public class FriendControllerTest {
     @Test
     @Rollback(false)
     public void confirFriend2Phone(){
-        log.info(friendController.confireFriend2Phone("11111143", "11111140"));
+        log.info(friendController.confireFriend2Phone("10000000001", "10000000002"));
     }
 
     @Test
@@ -61,7 +61,7 @@ public class FriendControllerTest {
         PageResult<User> pageResult = new PageResult<User>();
         pageResult.setCurPage(1);
         pageResult.setPageSize(10);
-        log.info(friendController.queryUnFriend(pageResult, "11111196", null, null));
+        log.info(friendController.queryUnFriend(pageResult, "10000000006", null, null));
 
 
         Alumnus alumnus = new Alumnus();
@@ -70,10 +70,10 @@ public class FriendControllerTest {
         alumnus.setSchool("school1");
         alumnus.setDepartment("department1");
         alumnus.setGrade("grade1");
-        log.info(friendController.queryUnFriend(pageResult, "11111196", alumnus, null));
+        log.info(friendController.queryUnFriend(pageResult, "10000000006", alumnus, null));
 
-        log.info(friendController.queryUnFriend(pageResult, "11111196", null, JdbConstants.ORDERBY_USERNAME));
-        log.info(friendController.queryUnFriend(pageResult, "11111196", null, JdbConstants.ORDERBY_LOCATION));
+        log.info(friendController.queryUnFriend(pageResult, "10000000006", null, JdbConstants.ORDERBY_USERNAME));
+        log.info(friendController.queryUnFriend(pageResult, "10000000006", null, JdbConstants.ORDERBY_LOCATION));
     }
 
     @Test
@@ -83,7 +83,7 @@ public class FriendControllerTest {
         PageResult<User> pageResult = new PageResult<User>();
         pageResult.setCurPage(1);
         pageResult.setPageSize(10);
-        log.info(friendController.queryUnFriend(pageResult, "11111196", null, null));
+        log.info(friendController.queryUnFriend(pageResult, "10000000006", null, null));
 
 
         Alumnus alumnus = new Alumnus();
@@ -92,17 +92,17 @@ public class FriendControllerTest {
         alumnus.setSchool("school1");
         alumnus.setDepartment("department1");
         alumnus.setGrade("grade1");
-        log.info(friendController.queryAllFriend(pageResult, "11111196", alumnus, null));
+        log.info(friendController.queryAllFriend(pageResult, "10000000006", alumnus, null));
 
-        log.info(friendController.queryAllFriend(pageResult, "11111196", null, JdbConstants.ORDERBY_USERNAME));
-        log.info(friendController.queryAllFriend(pageResult, "11111196", null, JdbConstants.ORDERBY_LOCATION));
+        log.info(friendController.queryAllFriend(pageResult, "10000000006", null, JdbConstants.ORDERBY_USERNAME));
+        log.info(friendController.queryAllFriend(pageResult, "10000000006", null, JdbConstants.ORDERBY_LOCATION));
     }
 
     @Test
     @Rollback(false)
     public void addFriend(){
-        String phone1 = "1111111";
-        String phone2 = "1111112";
+        String phone1 = "10000000001";
+        String phone2 = "10000000002";
         log.info(friendController.addFriend(phone1, phone2));
 
         String phone3 = "2323232";
@@ -115,7 +115,7 @@ public class FriendControllerTest {
         PageResult<User> pageResult = new PageResult<User>();
         pageResult.setCurPage(1);
         pageResult.setPageSize(10);
-        log.info(friendController.queryNearUsers(pageResult, "11111112"));
+        log.info(friendController.queryNearUsers(pageResult, "10000000001"));
     }
 
 }

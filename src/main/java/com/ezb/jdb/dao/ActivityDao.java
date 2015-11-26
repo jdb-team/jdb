@@ -19,17 +19,28 @@ import java.util.List;
 @Repository
 public class ActivityDao extends BaseDao<Activity> {
 
-    public PageResult<Activity> queryActivity(PageResult<Activity> pageResult, String keyWords) {
+    public PageResult<Activity> queryActivity(PageResult<Activity> pageResult, String keyWords, String city) {
 
         String hql = "from Activity o ";
+        List<Object> paramList = new ArrayList<Object>();
+        int i = 0;
+
         if (null != keyWords) {
             if (!StringUtils.isEmpty(keyWords.trim())) {
-                hql += "where o.title like ''%{0}%'' ";
+                hql += "where o.title like ''%{" + i++ + "}%'' ";
+                paramList.add(keyWords);
             }
         }
+
+        if (!StringUtils.isEmpty(city)) {
+
+            hql += "where o.title like ''%{" + i++ + "}%'' ";
+            paramList.add(city);
+        }
+
         hql += " order by o.createTime desc";
 
-        return query(MessageFormat.format(hql, keyWords), pageResult);
+        return query(MessageFormat.format(hql, paramList.toArray()), pageResult);
     }
 
     public int updatePv(Integer id) {

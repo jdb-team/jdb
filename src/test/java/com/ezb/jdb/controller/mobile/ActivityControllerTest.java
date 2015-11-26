@@ -33,13 +33,13 @@ public class ActivityControllerTest extends TestCase {
         PageResult<Activity> pageResult = new PageResult<Activity>();
         pageResult.setPageSize(10);
         pageResult.setCurPage(1);
-        log.info(activityController.queryActivity(pageResult, "1111111", null));
-        log.info(activityController.queryActivity(pageResult, "1111111", "满员测试"));
+        log.info(activityController.queryActivity(pageResult, "1111111", null, null));
+        log.info(activityController.queryActivity(pageResult, "1111111", "满员测试", null));
     }
 
     @Test
     public void viewActivity() {
-        log.info(activityController.viewActivity("1111111",108 ));
+        log.info(activityController.viewActivity("1111111", 108));
     }
 
     @Test
