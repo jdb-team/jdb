@@ -2,6 +2,8 @@ package com.ezb.jdb.dao.datainit;
 
 import com.ezb.jdb.dao.init.OrderInit;
 import com.ezb.jdb.dao.init.easemob.EmessageInit;
+import com.ezb.jdb.dao.init.jdb.CircleMessageInit;
+import com.ezb.jdb.model.CircleMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,10 +27,19 @@ public class OrderInitTest {
     @Resource
     private OrderInit orderInit;
 
+    @Resource
+    private CircleMessageInit circleMessageInit;
+
     @Test
     @Rollback(false)
     public void init(){
         orderInit.orderInit();
+    }
+
+    @Test
+    @Rollback(false)
+    public void initCircleMessage(){
+        circleMessageInit.init();
     }
 
 }

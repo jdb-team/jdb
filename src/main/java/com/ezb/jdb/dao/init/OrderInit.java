@@ -64,6 +64,9 @@ public class OrderInit {
     private InformInit informInit;
 
     @Resource
+    private CircleMessageInit circleMessageInit;
+
+    @Resource
     private EuserInit euserInit;
 
     @Resource
@@ -122,6 +125,9 @@ public class OrderInit {
 
         informInit.init();
         log.info("end init inform");
+
+        circleMessageInit.init();
+        log.info("end int circlemessage");
 
         log.info("=============== end initJdb ==============");
     }

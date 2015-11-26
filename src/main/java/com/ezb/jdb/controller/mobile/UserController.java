@@ -30,10 +30,6 @@ public class UserController {
     @Resource
     private IInvitateCodeService invitateCodeServiceImpl;
 
-    @Resource
-    private IAccessKeyService accessKeyServiceImpl;
-
-
     @RequestMapping(value = "mobile/user/exist")
     public
     @ResponseBody
