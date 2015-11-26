@@ -26,7 +26,7 @@ public class CircleMessageInit {
 
     public void init() {
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 1; i <= 100; i++) {
 
             Circle circle = circleDao.get(Circle.class, i);
 
