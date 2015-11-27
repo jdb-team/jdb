@@ -7,7 +7,6 @@ import com.ezb.jdb.model.Activity;
 import com.ezb.jdb.model.AtvCmt;
 import com.ezb.jdb.service.IActivityService;
 import com.ezb.jdb.service.IAtvCmtService;
-import com.ezb.jdb.service.IUserService;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;

@@ -6,6 +6,7 @@ import com.ezb.jdb.model.Circle;
 import com.ezb.jdb.model.Friend;
 import com.ezb.jdb.model.Topic;
 import com.ezb.jdb.service.IAtvCmtService;
+import com.ezb.jdb.service.IGlobalService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ import javax.annotation.Resource;
 public class SearchController {
 
     @Resource
-    private IAtvCmtService.IGlobalService globalServiceImpl;
+    private IGlobalService globalServiceImpl;
 
     /**
      * 全站搜索列表

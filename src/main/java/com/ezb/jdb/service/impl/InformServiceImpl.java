@@ -61,11 +61,11 @@ public class InformServiceImpl implements IInformService {
 
             if (StringUtils.equals(inform.getType(), NavType.TOPIC.toString())) {
                 inform.setViewurl(JdbConstants.VIEWURL_TOPIC + "?id=" + inform.getAssoId());
-                Topic Topic = topicDao.get(Topic.class, inform.getAssoId());
-                if (Topic == null) {
+                Topic topic = topicDao.get(Topic.class, inform.getAssoId());
+                if (topic == null) {
                     return ResponseState.INFORM_NULL;
                 }
-                inform.setInformUser(Topic.getCreateUser());
+                inform.setInformUser(topic.getCreateUser());
             }
 
             if (StringUtils.equals(inform.getType(), NavType.ACTIVITY.toString())) {
