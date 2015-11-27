@@ -1,4 +1,4 @@
-package com.ezb.jdb.service.impl;
+package com.ezb.jdb.service;
 
 import com.ezb.jdb.common.PageResult;
 import com.ezb.jdb.model.Activity;

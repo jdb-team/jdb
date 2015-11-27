@@ -11,6 +11,7 @@ import com.ezb.jdb.model.Activity;
 import com.ezb.jdb.model.Circle;
 import com.ezb.jdb.model.Friend;
 import com.ezb.jdb.model.Topic;
+import com.ezb.jdb.service.IGlobalService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

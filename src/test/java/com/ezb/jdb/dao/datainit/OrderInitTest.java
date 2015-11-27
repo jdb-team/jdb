@@ -1,6 +1,7 @@
 package com.ezb.jdb.dao.datainit;
 
 import com.ezb.jdb.dao.init.OrderInit;
+import com.ezb.jdb.dao.init.easemob.EcircleInit;
 import com.ezb.jdb.dao.init.easemob.EcircleMessageInit;
 import com.ezb.jdb.dao.init.easemob.EmessageInit;
 import com.ezb.jdb.dao.init.jdb.CircleMessageInit;
@@ -32,15 +33,12 @@ public class OrderInitTest {
     @Resource
     private EcircleMessageInit ecircleMessageInit;
 
+    @Resource
+    private EcircleInit ecircleInit;
+
     @Test
     @Rollback(false)
     public void init(){
         orderInit.orderInit();
-    }
-
-    @Test
-    @Rollback(false)
-    public void aa(){
-        ecircleMessageInit.init();
     }
 }
