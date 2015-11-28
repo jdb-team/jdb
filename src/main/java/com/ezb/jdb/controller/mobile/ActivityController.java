@@ -53,13 +53,14 @@ public class ActivityController {
      * @param pageResult
      * @param phone 手机号
      * @param queryWords 查询关键字
+     * @param labelId     1 热门 2 历史
      * @return
      */
     @RequestMapping(value = "mobile/activity/queryactivity")
     public
     @ResponseBody
-    String queryActivity(PageResult<Activity> pageResult, String phone, String queryWords,String city) {
-        return activityServiceImpl.queryActivity(pageResult, phone, queryWords,city);
+    String queryActivity(PageResult<Activity> pageResult, String phone, String queryWords,String city,String labelId) {
+        return activityServiceImpl.queryActivity(pageResult, phone, queryWords,city,labelId);
     }
 
     /**
