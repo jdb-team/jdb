@@ -19,7 +19,7 @@ import java.util.List;
 @Repository
 public class ActivityDao extends BaseDao<Activity> {
 
-    public PageResult<Activity> queryActivity(PageResult<Activity> pageResult, String keyWords, String city) {
+    public PageResult<Activity> queryActivity(PageResult<Activity> pageResult, String keyWords, String city,String labelId) {
 
         String hql = "from Activity o ";
         List<Object> paramList = new ArrayList<Object>();
@@ -37,8 +37,11 @@ public class ActivityDao extends BaseDao<Activity> {
             hql += "where o.title like ''%{" + i++ + "}%'' ";
             paramList.add(city);
         }
-
-        hql += " order by o.createTime desc";
+        if ("1".equals(labelId)){
+            hql += " order by o.pv desc,o.createTime desc";
+        }else{
+            hql += " order by o.createTime desc";
+        }
 
         return query(MessageFormat.format(hql, paramList.toArray()), pageResult);
     }
