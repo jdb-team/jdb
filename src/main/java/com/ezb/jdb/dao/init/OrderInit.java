@@ -5,6 +5,7 @@ import com.ezb.jdb.dao.init.easemob.*;
 import com.ezb.jdb.dao.init.jdb.*;
 import com.ezb.jdb.easemob.comm.Constants;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.mapping.Join;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -78,6 +79,9 @@ public class OrderInit {
     @Resource
     private EcircleMessageInit ecircleMessageInit;
 
+    @Resource
+    private JoinUserCircleInit joinUserCircleInit;
+
     /**
      * 交大邦祥光数据初始化
      */
@@ -125,6 +129,9 @@ public class OrderInit {
 
         informInit.init();
         log.info("end init inform");
+
+        joinUserCircleInit.init();
+        log.info("end init joinusercircle");
 
         circleMessageInit.init();
         log.info("end int circlemessage");
