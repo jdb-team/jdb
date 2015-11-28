@@ -210,6 +210,10 @@ public class CircleServiceImpl implements ICircleService {
         return ResponseState.SUCCESS;
     }
 
+    public Integer qCountCircleByid(Integer refId) {
+        return circleDao.qCountCircleByid(refId);
+    }
+
     /**
      * 上传图标和不图片，设置circle属性
      *

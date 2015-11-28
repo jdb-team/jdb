@@ -116,4 +116,9 @@ public class CircleDao extends BaseDao<Circle> {
         String sql3 = "delete from circle where id=''{0}''";
         executeSql(MessageFormat.format(sql3,id));
     }
+
+    public Integer qCountCircleByid(Integer refId) {
+        String hql = "from JoinUserCircle o where o.circle.id=''{0}''";
+        return queryCount(MessageFormat.format(hql,refId));
+    }
 }

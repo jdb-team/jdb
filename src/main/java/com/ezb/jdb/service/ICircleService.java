@@ -33,4 +33,6 @@ public interface ICircleService {
     String saveNickName(Integer id,String nickName);
 
     String delete(String phone, Integer id);
+
+    Integer qCountCircleByid(Integer refId);
 }
