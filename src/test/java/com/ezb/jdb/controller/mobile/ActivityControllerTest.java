@@ -39,7 +39,7 @@ public class ActivityControllerTest extends TestCase {
 
     @Test
     public void viewActivity() {
-        log.info(activityController.viewActivity("1111111", 108));
+        log.info(activityController.viewActivity("10000000011", 4));
     }
 
     @Test

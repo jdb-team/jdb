@@ -15,6 +15,7 @@ import com.ezb.jdb.model.User;
 import com.ezb.jdb.service.IPicService;
 import com.ezb.jdb.service.IActivityService;
 import com.ezb.jdb.service.IMailService;
+import com.ezb.jdb.tool.JdbDateUtil;
 import com.ezb.jdb.tool.JdbMd5Util;
 import com.ezb.jdb.view.ActivityView;
 import org.apache.commons.lang.StringUtils;
@@ -132,10 +133,13 @@ public class ActivityServiceImpl implements IActivityService {
 
         List<AtvCmt> comments = atvCmtDao.qAtvCmtByActivityId(id);
         for (AtvCmt atvCmt : comments) {
-            atvCmt.setChildCmtCount(atvCmtDao.qAtvCountCmtByPId(atvCmt.getParentAtvCmt().getId()));
+            if(null != atvCmt.getParentAtvCmt()){
+                atvCmt.setChildCmtCount(atvCmtDao.qAtvCountCmtByPId(atvCmt.getId()));
+            }
         }
 
         JSONObject jsonObject = new JSONObject();
+        activity.setInterTime(JdbDateUtil.interTime(activity.getCreateTime()));
         jsonObject.put("activity", activity);
         jsonObject.put("comments", comments);
         jsonObject.put("state", ActivityView.getState(activity));
@@ -165,6 +169,12 @@ public class ActivityServiceImpl implements IActivityService {
             activity.setPicPath(rpath);
             activity.setPv(0);
             activity.setState(1);
+
+            //活动创建者默认参加活动
+            HashSet<User> set = new HashSet<User>();
+            set.add(user);
+            activity.setJoinUsers(set);
+
             //人数上限 100000
             if (null == activity.getPersonLimit()) {
                 activity.setPersonLimit(100000);

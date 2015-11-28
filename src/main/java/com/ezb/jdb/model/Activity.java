@@ -82,6 +82,9 @@ public class Activity extends Fmodel {
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;//活动创建时间
 
+    @Transient
+    private String interTime;
+
     @Column
     private Integer pv;
 
