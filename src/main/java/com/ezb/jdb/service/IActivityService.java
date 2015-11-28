@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface IActivityService {
 
-    String queryActivity(PageResult<Activity> pageResult,String phone,String queryWords,String city);
+    String queryActivity(PageResult<Activity> pageResult,String phone,String queryWords,String city,String labelId);
 
     Activity queryById(Integer id);
 
