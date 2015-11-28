@@ -44,4 +44,7 @@ public class Focus {
     @Column
     private Integer position;//位置 第几位焦点图
 
+    @Transient
+    private Integer count;
+
 }

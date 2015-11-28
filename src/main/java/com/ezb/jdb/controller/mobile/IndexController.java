@@ -6,13 +6,12 @@ import com.ezb.jdb.common.ResponseData;
 import com.ezb.jdb.common.ResponseState;
 import com.ezb.jdb.model.Focus;
 import com.ezb.jdb.model.User;
+import com.ezb.jdb.service.ICircleService;
 import com.ezb.jdb.service.IFocusService;
 import com.ezb.jdb.service.IUserService;
 import com.ezb.jdb.view.FriendView;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -31,6 +30,9 @@ public class IndexController {
 
     @Resource
     private IUserService userServiceImpl;
+
+    @Resource
+    private ICircleService circleServiceImpl;
 
     /**
      * 首页数据组装
@@ -72,6 +74,9 @@ public class IndexController {
         //圈子推荐(条)
         focusPageResult.setPageSize(circleSize);
         List<Focus> circleList = focusServiceImpl.getCircleFocus(focusPageResult).getResultList();
+        for(Focus focus : circleList){
+            focus.setCount(circleServiceImpl.qCountCircleByid(focus.getRefId()));
+        }
 
         //附近校友
         PageResult<User> userPageResult = new PageResult<User>();
