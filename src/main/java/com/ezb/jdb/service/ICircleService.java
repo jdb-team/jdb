@@ -31,4 +31,6 @@ public interface ICircleService {
     Circle queryById(Integer id);
 
     String saveNickName(Integer id,String nickName);
+
+    String delete(String phone, Integer id);
 }

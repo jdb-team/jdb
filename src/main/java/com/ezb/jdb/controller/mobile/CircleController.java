@@ -155,4 +155,16 @@ public class CircleController {
         return circleServiceImpl.viewCircle(phone, id);
     }
 
+    /**
+     * 解散圈子
+     *
+     * @return
+     */
+    @RequestMapping(value = "mobile/circle/delete")
+    public
+    @ResponseBody
+    String delete(String phone, Integer id) {
+        return circleServiceImpl.delete(phone, id);
+    }
+
 }

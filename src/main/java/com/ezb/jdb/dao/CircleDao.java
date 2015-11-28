@@ -3,9 +3,11 @@ package com.ezb.jdb.dao;
 import com.ezb.jdb.common.PageResult;
 import com.ezb.jdb.dao.base.BaseDao;
 import com.ezb.jdb.model.Circle;
+import com.ezb.jdb.model.Message;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Repository;
 
+import javax.print.attribute.standard.JobMessageFromOperator;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,7 @@ import java.util.List;
 @Repository
 public class CircleDao extends BaseDao<Circle> {
 
-    public List<Circle> queryAll(){
+    public List<Circle> queryAll() {
         String hql = "from Circle o";
         return query(hql);
     }
@@ -94,5 +96,24 @@ public class CircleDao extends BaseDao<Circle> {
         hql += " order by o.createTime desc";
 
         return query(MessageFormat.format(hql, paramList.toArray()), pageResult);
+    }
+
+    public void deleteById(Integer id) {
+
+        //删除圈子评论
+        String sql = "delete from circmt where circle_id=''{0}''";
+        executeSql(MessageFormat.format(sql, id));
+
+        //删除圈子内的消息记录
+        String sql1 = "delete from circlemessage where circle_id=''{0}''";
+        executeSql(MessageFormat.format(sql1,id));
+
+        //删除用户圈子关系
+        String sql2 = "delete from join_user_circle where circle_id=''{0}''";
+        executeSql(MessageFormat.format(sql2,id));
+
+        //删除圈子
+        String sql3 = "delete from circle where id=''{0}''";
+        executeSql(MessageFormat.format(sql3,id));
     }
 }

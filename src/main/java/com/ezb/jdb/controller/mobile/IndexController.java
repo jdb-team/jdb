@@ -9,6 +9,7 @@ import com.ezb.jdb.model.User;
 import com.ezb.jdb.service.IFocusService;
 import com.ezb.jdb.service.IUserService;
 import com.ezb.jdb.view.FriendView;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,6 +51,18 @@ public class IndexController {
             return ResponseState.INVALID_PHONE;
         }
 
+        if (null == focusSize) {
+            focusSize = 6;
+        }
+
+        if (null == circleSize) {
+            circleSize = 4;
+        }
+
+        if (null == userSize) {
+            userSize = 5;
+        }
+
         //焦点图(活动话题 6条)
         PageResult<Focus> focusPageResult = new PageResult<Focus>();
         focusPageResult.setCurPage(1);
@@ -67,9 +80,9 @@ public class IndexController {
         List<User> userList = userServiceImpl.queryNearUsers(userPageResult, phone).getResultList();
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("focusList",focusList);
-        jsonObject.put("circleList",circleList);
-        jsonObject.put("userList", FriendView.getUserJsonArray(user,userList));
+        jsonObject.put("focusList", focusList);
+        jsonObject.put("circleList", circleList);
+        jsonObject.put("userList", FriendView.getUserJsonArray(user, userList));
 
         return ResponseData.getResData(jsonObject);
     }

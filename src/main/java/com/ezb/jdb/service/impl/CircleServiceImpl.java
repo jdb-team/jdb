@@ -193,6 +193,23 @@ public class CircleServiceImpl implements ICircleService {
         return ResponseState.SUCCESS;
     }
 
+    public String delete(String phone, Integer id) {
+        User user = userDao.queryByPhone(phone);
+        if (null == user) {
+            return ResponseState.INVALID_PHONE;
+        }
+        Circle circle = circleDao.get(Circle.class, id);
+        if (null == circle) {
+            return ResponseState.INVALID_ID;
+        }
+        if(user.getId() != circle.getCreateUser().getId()){
+            return ResponseState.AUTH_CIRCLE;
+        }
+
+        circleDao.deleteById(circle.getId());
+        return ResponseState.SUCCESS;
+    }
+
     /**
      * 上传图标和不图片，设置circle属性
      *

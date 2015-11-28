@@ -29,6 +29,4 @@ public class OrderInitTest {
     public void init(){
         orderInit.orderInit();
     }
-
-
 }

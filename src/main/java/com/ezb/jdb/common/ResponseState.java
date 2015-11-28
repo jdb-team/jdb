@@ -44,6 +44,7 @@ public class ResponseState {
     public static String SHARE_OPT_REPEAT = ResponseState.getResState("125", "重复分享!");
     public static String PARAMS_LACK = ResponseState.getResState("129", "参数不完整!");
     public static String AREADY_JOIN_CIRCLE = ResponseState.getResState("130", "用户已加入圈子!");
+    public static String AUTH_CIRCLE = ResponseState.getResState("131", "你没有权限解散此圈子!");
 
 
     /**
