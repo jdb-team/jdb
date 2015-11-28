@@ -40,7 +40,7 @@ public class IndexController {
      * @param userSize   附近用户个数
      * @return
      */
-    @RequestMapping(value = "mobile/index/indexdata")
+    @RequestMapping(value = "mobile/discover/recommend")
     public
     @ResponseBody
     String indexData(String phone, Integer focusSize, Integer circleSize, Integer userSize) {

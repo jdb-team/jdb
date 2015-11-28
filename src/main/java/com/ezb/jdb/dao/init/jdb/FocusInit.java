@@ -87,8 +87,8 @@ public class FocusInit {
         focusDao.add(focus6);
 
         Focus focus7 = new Focus();
-        focus7.setInfo("");
-        focus7.setTitle("");
+        focus7.setInfo("09级通讯录");
+        focus7.setTitle("09级通讯录");
         focus7.setPicpath(picPath[rd.nextInt(3)]);
         focus7.setPosition(7);
         focus7.setRefId(id = (rd.nextInt(100) + 1));
@@ -97,13 +97,33 @@ public class FocusInit {
         focusDao.add(focus7);
 
         Focus focus8 = new Focus();
-        focus8.setInfo("");
-        focus8.setTitle("");
+        focus8.setInfo("09级通讯录");
+        focus8.setTitle("09级通讯录");
         focus8.setPicpath(picPath[rd.nextInt(3)]);
         focus8.setPosition(8);
         focus8.setRefId(id = (rd.nextInt(100) + 1));
         focus8.setType("圈子");
         focus8.setViewurl("admin/circle/view?id=" + String.valueOf(id));
         focusDao.add(focus8);
+
+        Focus focus9 = new Focus();
+        focus9.setInfo("09级通讯录");
+        focus9.setTitle("09级通讯录");
+        focus9.setPicpath(picPath[rd.nextInt(3)]);
+        focus9.setPosition(8);
+        focus9.setRefId(id = (rd.nextInt(100) + 1));
+        focus9.setType("圈子");
+        focus9.setViewurl("admin/circle/view?id=" + String.valueOf(id));
+        focusDao.add(focus9);
+
+        Focus focus10 = new Focus();
+        focus10.setInfo("09级通讯录");
+        focus10.setTitle("09级通讯录");
+        focus10.setPicpath(picPath[rd.nextInt(3)]);
+        focus10.setPosition(8);
+        focus10.setRefId(id = (rd.nextInt(100) + 1));
+        focus10.setType("圈子");
+        focus10.setViewurl("admin/circle/view?id=" + String.valueOf(id));
+        focusDao.add(focus10);
     }
 }

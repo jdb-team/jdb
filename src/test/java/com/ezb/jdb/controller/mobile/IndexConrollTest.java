@@ -25,7 +25,7 @@ public class IndexConrollTest {
 
     @Test
     public void indexData(){
-        log.info(indexController.indexData("1111111",6,3,4));
+        log.info(indexController.indexData("1111111",6,4,5));
     }
 
 }

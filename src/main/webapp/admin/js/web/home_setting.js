@@ -1,6 +1,6 @@
 var basePath = getBasePath();
 var topicAtvShowSize = 6;//焦点图显示条数
-var circleSize = 2;//朋友圈显示条数
+var circleSize = 4;//朋友圈显示条数
 
 /**
  * 绑定活动和专栏

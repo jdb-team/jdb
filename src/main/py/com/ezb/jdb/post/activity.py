@@ -17,7 +17,9 @@ def createActivity(token):
         "city": "11111",
         "address": "address",
         "joinFee": "222",
-        "personLimit":"333"
+        "personLimit": "333",
+        "startTime": "2015-11-28 10:54:00",
+        "endTime": "2015-11-28 10:54:00"
     }
 
     datagen, headers = multipart_encode(params)
