@@ -26,9 +26,9 @@ public class CircleMessageControllerTest {
     @Test
     public  void  sendCircleMessageTest(){
         User sender = new User();
-        sender.setUsername("13327689964");
+        sender.setUsername("10000000019");
         Circle receiver = new Circle();
-        receiver.setId(1);
+        receiver.setId(53);
         CircleMessage message = new CircleMessage();
         message.setContent("消息内容测试");
         message.setSender(sender);
@@ -36,4 +36,21 @@ public class CircleMessageControllerTest {
 
         circleMessageController.sendCircleMessage(message);
     }
+
+
+    @Test
+    public  void  setupZeroTest(){
+        User sender = new User();
+        sender.setId(20);
+        Circle receiver = new Circle();
+        receiver.setId(53);
+        CircleMessage message = new CircleMessage();
+        message.setContent("消息内容测试");
+        message.setSender(sender);
+        message.setCircle(receiver);
+
+        circleMessageController.setupZero(message);
+        System.out.println(circleMessageController.setupZero(message));
+    }
+
 }

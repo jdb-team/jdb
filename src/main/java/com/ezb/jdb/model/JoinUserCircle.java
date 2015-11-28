@@ -30,6 +30,9 @@ public class JoinUserCircle {
     @Column(name = "nickname", length = 32)
     private String nickName;    //昵称
 
+    @Column(name = "msg_count")
+    private  int msgCount;
+
     public boolean equals(Object obj) {
         return (this == obj);
     }

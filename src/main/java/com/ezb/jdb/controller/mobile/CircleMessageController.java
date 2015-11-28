@@ -17,6 +17,11 @@ public class CircleMessageController {
     @Resource
     private ICircleMessageService circleMessageService;
 
+    /**
+     * 发送群组消息
+     * @param circleMessage
+     * @return
+     */
     @RequestMapping(value = "mobile/message/sendcirclemessage")
     public
     @ResponseBody
@@ -24,4 +29,15 @@ public class CircleMessageController {
         return circleMessageService.sendCircleMessage(circleMessage);
     }
 
+    /**
+     * 发送群组消息
+     * @param circleMessage
+     * @return  影响的条数，如果返回 0  说明该次请求不成功
+     */
+    @RequestMapping(value = "mobile/message/setupzero")
+    public
+    @ResponseBody
+    int setupZero(CircleMessage circleMessage) {
+        return circleMessageService.setupZero(circleMessage);
+    }
 }

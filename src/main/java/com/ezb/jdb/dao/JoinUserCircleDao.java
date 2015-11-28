@@ -37,4 +37,30 @@ public class JoinUserCircleDao extends BaseDao<JoinUserCircle> {
         String hql = "from JoinUserCircle o where o.circle.id=''{0}''";
         return query(MessageFormat.format(hql,circleid),pageResult);
     }
+
+    /**
+     * 根据用户id，圈子id 确定圈子未读的消息条数 将未读的消息加一
+     *
+     * @param uid 用户id
+     * @param cid 圈子id
+     */
+    public int updateMsgCount(Integer uid, Integer cid) {
+        String sql =" UPDATE join_user_circle  j SET j.msg_count = if(isnull(j.msg_count),0,j.msg_count) + 1  WHERE j.user_id = "
+                +uid+" and j.circle_id = "
+                + cid;
+        return  executeSql(sql);
+    }
+
+    /**
+     * 根据用户id，圈子id  消息查看后，将消息的条数置为0
+     *
+     * @param uid 用户id
+     * @param cid 圈子id
+     */
+    public int updateToZero(Integer uid, Integer cid){
+        String sql =" UPDATE join_user_circle  j SET j.msg_count = 0  WHERE j.user_id = "
+                +uid+" and j.circle_id = "
+                + cid;
+        return  executeSql(sql);
+    }
 }

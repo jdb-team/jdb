@@ -11,4 +11,11 @@ public interface ICircleMessageService {
      *发送圈子消息
      */
     String sendCircleMessage(CircleMessage circleMessage);
+
+    /**
+     * 读取消息后，将消息的条数置为0
+     * @param circleMessage
+     * @return 影响的条数，如果返回 0  说明该次请求不成功
+     */
+    int setupZero(CircleMessage circleMessage);
 }
