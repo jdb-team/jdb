@@ -14,7 +14,7 @@ def createTopic(token):
     params = {"content": "创建话题", "topicType.id": "1", "phone": "1111111", "pic1": open("aa.png", "rb"),
               "pic2": open("bb.png", "rb")}
     datagen, headers = multipart_encode(params)
-    request = urllib2.Request("http://localhost:8000/jdb/mobile/topic/createTopic", datagen, headers)
+    request = urllib2.Request("http://localhost:8000/jdb/mobile/topic/createtopic", datagen, headers)
     request.add_header("x-access-token", token)
     print urllib2.urlopen(request).read()
 
