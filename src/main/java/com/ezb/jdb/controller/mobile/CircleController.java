@@ -169,6 +169,18 @@ public class CircleController {
     }
 
     /**
+     * 批量添加圈子
+     *
+     * @return
+     */
+    @RequestMapping(value = "mobile/circle/batchjoin")
+    public
+    @ResponseBody
+    String batchJoin(String phones,int circleId){
+        return  circleServiceImpl.batchJoin(phones,circleId);
+    }
+
+    /**
      * 退出圈子
      *
      * @param phone 手机号码
