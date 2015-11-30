@@ -35,4 +35,6 @@ public interface ICircleService {
     String delete(String phone, Integer id);
 
     Integer qCountCircleByid(Integer refId);
+
+    String batchJoin(String phones,int circleId);
 }

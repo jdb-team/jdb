@@ -18,8 +18,10 @@ import com.ezb.jdb.tool.JdbFileUtil;
 import com.ezb.jdb.tool.JdbPicUtil;
 import com.ezb.jdb.view.CircleView;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -257,5 +259,36 @@ public class CircleServiceImpl implements ICircleService {
             }
         }
         return true;
+    }
+
+    public String batchJoin(String phones,int circleId){
+        if (phones.contains(",")) {
+            String[] phonrArray = phones.split(",");
+            Circle circle = circleDao.get(Circle.class, circleId);
+            if (null != circle) {
+                for (int i = 0; i < phonrArray.length; i++) {
+                    User user = userDao.queryByPhone(phonrArray[i]);
+                    if (null != user) {
+                        JoinUserCircle joinUserCircle = joinUserCircleDao.getByUCId(user.getId(), circle.getId());
+                        if (joinUserCircle != null) {
+                            return ResponseState.AREADY_JOIN_CIRCLE;
+                        }
+                        if (null == circle.getMembers()) {
+                            circle.setMembers(new HashSet<JoinUserCircle>());
+                        }
+                        joinUserCircle = new JoinUserCircle();
+                        joinUserCircle.setCircle(circle);
+                        joinUserCircle.setUser(user);
+                        circle.getMembers().add(joinUserCircle);
+                        circleDao.update(circle);
+                        } else {
+                            return ResponseState.INVALID_PHONE;
+                        }
+                    }
+                }
+            return  ResponseState.SUCCESS;
+        }else{
+            return  join(phones,circleId);
+        }
     }
 }
