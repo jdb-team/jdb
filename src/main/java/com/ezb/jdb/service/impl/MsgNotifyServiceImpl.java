@@ -44,7 +44,7 @@ public class MsgNotifyServiceImpl implements IMsgNotifyService {
         receiveNotify.setCurUser(message.getReceiver());
         receiveNotify.setCtcUser(message.getSender());
         receiveNotify.setMsg(message.getContent());
-        senderNotify.setType(0);
+        receiveNotify.setType(0);
         receiveNotify.setCreateTime(message.getCreateTime());
         msgNotifyDao.saveOrUpdate(receiveNotify);
     }

@@ -30,14 +30,14 @@ public class MessageControllerTest {
     @Rollback(false)
     public void sendMessage(){
         User sender = new User();
-        sender.setUsername("11111122");
+        sender.setUsername("10000000021");
         User receiver = new User();
-        receiver.setUsername("11111112");
+        receiver.setUsername("10000000043");
         Message message = new Message();
         message.setContent("消息内容测试");
         message.setSender(sender);
         message.setReceiver(receiver);
-
+        messageController.sendMessage(message);
         log.info(messageController.sendMessage(message));
     }
 
