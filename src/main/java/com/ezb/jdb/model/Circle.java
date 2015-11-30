@@ -41,6 +41,9 @@ public class Circle {
     @Transient
     private Integer cmtCount;//评论条数
 
+    @Transient
+    private Integer count;
+
     @Column(name = "c_time")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;//圈子创建时间
