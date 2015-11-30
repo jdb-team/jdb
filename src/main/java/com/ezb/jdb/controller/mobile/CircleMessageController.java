@@ -1,5 +1,6 @@
 package com.ezb.jdb.controller.mobile;
 
+import com.ezb.jdb.common.ResponseState;
 import com.ezb.jdb.model.CircleMessage;
 import com.ezb.jdb.service.ICircleMessageService;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,13 @@ public class CircleMessageController {
     @RequestMapping(value = "mobile/message/setupzero")
     public
     @ResponseBody
-    int setupZero(CircleMessage circleMessage) {
-        return circleMessageService.setupZero(circleMessage);
+    String setupZero(CircleMessage circleMessage) {
+
+        int count = circleMessageService.setupZero(circleMessage);
+        if(count == 0){
+            return  ResponseState.FIAL;
+        }else{
+            return  ResponseState.SUCCESS;
+        }
     }
 }
