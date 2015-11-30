@@ -26,8 +26,17 @@ def nickname(token):
     content = urllib2.urlopen(request).read()
     return content
 
+def query(token):
+    """圈子列表"""
+    url = "http://localhost:8088/jdb/mobile/circle/querycircles"
+    params = {"phone": "10000000008"}
+    post_data = urllib.urlencode(params)
+    request = urllib2.Request(url, post_data)
+    request.add_header("x-access-token", token)
+    content = urllib2.urlopen(request).read()
+    return content
+
 
 if __name__ == '__main__':
     token = user.login()
-    # print join(token)
-    print nickname(token)
+    print query(token)

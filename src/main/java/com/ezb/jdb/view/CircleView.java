@@ -20,7 +20,7 @@ public class CircleView {
         for (Circle circle : list) {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("circle", circle);
-            if (null == circle.getMembers() || !circle.getMembers().contains(user)) {
+            if (null == circle.getMembers() || null != circle.getMembers() && !circle.getMembers().contains(user)) {
                 jsonObject.put("join", "0");
             } else {
                 jsonObject.put("join", "1");

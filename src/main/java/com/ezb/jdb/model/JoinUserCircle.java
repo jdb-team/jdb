@@ -31,7 +31,7 @@ public class JoinUserCircle {
     private String nickName;    //昵称
 
     @Column(name = "msg_count")
-    private  int msgCount;
+    private  Integer msgCount;
 
     public boolean equals(Object obj) {
         return (this == obj);

@@ -583,7 +583,7 @@ CREATE TABLE `join_user_circle` (
   COMMENT '圈子id',
   `user_id`   INT(11)          DEFAULT NULL
   COMMENT '用户id',
-  'msg_count' int(11)          DEFAULT NULL
+  'msg_count' int(11)          DEFAULT 0
   COMMENT '圈子消息条数',
   PRIMARY KEY (`id`)
 )
