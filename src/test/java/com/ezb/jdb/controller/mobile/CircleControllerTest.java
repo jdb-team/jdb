@@ -1,7 +1,6 @@
 package com.ezb.jdb.controller.mobile;
 
 import com.ezb.jdb.common.PageResult;
-import com.ezb.jdb.controller.mobile.CircleController;
 import com.ezb.jdb.model.CirCmt;
 import com.ezb.jdb.model.Circle;
 import lombok.extern.slf4j.Slf4j;
@@ -77,6 +76,12 @@ public class CircleControllerTest {
         log.info(circleController.join("1111116", 12));
         log.info(circleController.join("1111117", 12));
         log.info(circleController.join("1111118", 12));
+    }
+
+    @Test
+    @Rollback(false)
+    public void exit(){
+        log.info(circleController.exit("10000000013" , 59));
     }
 
     @Test

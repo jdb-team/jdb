@@ -221,6 +221,24 @@ public class CircleServiceImpl implements ICircleService {
         return circleDao.qCountCircleByid(refId);
     }
 
+    public String exit(String phone , Integer id){
+        User user = userDao.queryByPhone(phone);
+        if(user == null){
+            return ResponseState.INVALID_PHONE;
+        }
+        Circle  circle = circleDao.get(Circle.class , id);
+        if(circle == null){
+            return ResponseState.INVALID_ID;
+        }
+        JoinUserCircle joinUserCircle = joinUserCircleDao.getByUCId(user.getId() , circle.getId());
+        if(joinUserCircle == null){
+            return ResponseState.NOT_JOIN_CIRCLE;
+        }
+        joinUserCircleDao.deleteById(user.getId() , circle.getId());
+        return ResponseState.SUCCESS;
+
+    }
+
     /**
      * 上传图标和不图片，设置circle属性
      *

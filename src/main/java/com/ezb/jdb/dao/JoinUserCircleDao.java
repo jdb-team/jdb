@@ -63,4 +63,9 @@ public class JoinUserCircleDao extends BaseDao<JoinUserCircle> {
                 + cid;
         return  executeSql(sql);
     }
+
+    public int deleteById(Integer uid , Integer cid){
+        String sql = "DELETE from join_user_circle  where user_id = ''{0}'' and circle_id =  ''{1}''";
+        return executeSql(MessageFormat.format(sql,uid,cid));
+    }
 }
