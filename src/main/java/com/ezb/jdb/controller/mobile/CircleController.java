@@ -168,4 +168,29 @@ public class CircleController {
         return circleServiceImpl.delete(phone, id);
     }
 
+    /**
+     * 批量添加圈子
+     *
+     * @return
+     */
+    @RequestMapping(value = "mobile/circle/batchjoin")
+    public
+    @ResponseBody
+    String batchJoin(String phones,int circleId){
+        return  circleServiceImpl.batchJoin(phones,circleId);
+    }
+
+    /**
+     * 退出圈子
+     *
+     * @param phone 手机号码
+     * @param id    圈子id
+     * @return
+     */
+    @RequestMapping(value = "mobile/circle/exit")
+    public
+    @ResponseBody
+    String exit(String phone , Integer id){
+        return circleServiceImpl.exit(phone , id);
+    }
 }

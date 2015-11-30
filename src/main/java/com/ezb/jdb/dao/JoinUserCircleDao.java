@@ -45,10 +45,8 @@ public class JoinUserCircleDao extends BaseDao<JoinUserCircle> {
      * @param cid 圈子id
      */
     public int updateMsgCount(Integer uid, Integer cid) {
-        String sql =" UPDATE join_user_circle  j SET j.msg_count = if(isnull(j.msg_count),0,j.msg_count) + 1  WHERE j.user_id = "
-                +uid+" and j.circle_id = "
-                + cid;
-        return  executeSql(sql);
+        String sql =" UPDATE join_user_circle  j SET j.msg_count = if(isnull(j.msg_count),0,j.msg_count) + 1  WHERE j.user_id = ''{0}''and j.circle_id =''{1}''";
+        return  executeSql(MessageFormat.format(sql,uid,cid));
     }
 
     /**
@@ -58,9 +56,12 @@ public class JoinUserCircleDao extends BaseDao<JoinUserCircle> {
      * @param cid 圈子id
      */
     public int updateToZero(Integer uid, Integer cid){
-        String sql =" UPDATE join_user_circle  j SET j.msg_count = 0  WHERE j.user_id = "
-                +uid+" and j.circle_id = "
-                + cid;
-        return  executeSql(sql);
+        String sql =" UPDATE join_user_circle  j SET j.msg_count = 0  WHERE j.user_id = ''{0}''and j.circle_id =''{1}''";
+        return  executeSql(MessageFormat.format(sql,uid,cid));
+    }
+
+    public int deleteById(Integer uid , Integer cid){
+        String sql = "DELETE from join_user_circle  where user_id = ''{0}'' and circle_id =  ''{1}''";
+        return executeSql(MessageFormat.format(sql,uid,cid));
     }
 }
