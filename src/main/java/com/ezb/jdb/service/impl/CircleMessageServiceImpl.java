@@ -9,6 +9,7 @@ import com.ezb.jdb.model.Circle;
 import com.ezb.jdb.model.CircleMessage;
 import com.ezb.jdb.model.User;
 import com.ezb.jdb.service.ICircleMessageService;
+import com.ezb.jdb.service.IMsgNotifyService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -31,6 +32,9 @@ public class CircleMessageServiceImpl implements ICircleMessageService{
     @Resource
     private JoinUserCircleDao joinUserCircleDao;
 
+    @Resource
+    private IMsgNotifyService msgNotifyServiceImpl;
+
     public String sendCircleMessage(CircleMessage circleMessage){
         if (circleMessage.getSender() == null || circleMessage.getCircle() == null){
             return ResponseState.FIAL;
@@ -49,6 +53,7 @@ public class CircleMessageServiceImpl implements ICircleMessageService{
         circleMessageDao.add(circleMessage);
         //sender和receiver对应关系的表的msg_count加一
         joinUserCircleDao.updateMsgCount(sender.getId(),receiver.getId());
+        msgNotifyServiceImpl.putCircle(circleMessage);
         return ResponseState.SUCCESS;
     }
 

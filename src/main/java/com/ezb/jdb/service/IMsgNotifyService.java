@@ -1,6 +1,7 @@
 package com.ezb.jdb.service;
 
 import com.ezb.jdb.common.PageResult;
+import com.ezb.jdb.model.CircleMessage;
 import com.ezb.jdb.model.Message;
 import com.ezb.jdb.model.MsgNotify;
 
@@ -16,6 +17,13 @@ public interface IMsgNotifyService {
      * @param message
      */
     void put(Message message);
+
+    /**
+     * 将发送的圈子消息添加到消息通知队列中
+     * @param circleMessage
+     */
+
+    void putCircle(CircleMessage circleMessage);
 
     /**
      * 最新消息查询

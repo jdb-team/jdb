@@ -377,8 +377,12 @@ CREATE TABLE `msgnotify` (
   COMMENT '创建时间',
   `msg`        VARCHAR(255)     DEFAULT NULL
   COMMENT '消息内容',
+  `type` INT(1)                DEFAULT NULL
+  COMMENT '0：关联用户为user，1：关联用户为circle',
   `ctc_userid` INT(11)          DEFAULT NULL
   COMMENT '关联用户id',
+  `ctc_circleid` INT(11)        DEFAULT NULL
+  COMMENT '关联圈子id',
   `cur_userid` INT(11)          DEFAULT NULL
   COMMENT '当前用户id',
   PRIMARY KEY (`id`)

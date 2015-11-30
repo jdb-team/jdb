@@ -14,9 +14,9 @@ import java.text.MessageFormat;
  */
 @Repository
 public class MsgNotifyDao extends BaseDao<MsgNotify> {
-    public MsgNotify query(Integer curId,Integer ctcId){
-        String hql = "from MsgNotify o where o.curUser.id=''{0}'' and o.ctcUser.id=''{1}''";
-        return queryUnique(MessageFormat.format(hql,curId,ctcId));
+    public MsgNotify query(Integer curId,Integer ctcUserId,Integer ctcCircleId){
+        String hql = "from MsgNotify o where o.curUser.id=''{0}'' and o.ctcUser.id=''{1}''and o.ctcCircle.id=''{2}''";
+        return queryUnique(MessageFormat.format(hql,curId,ctcUserId,ctcCircleId));
     }
 
     public PageResult<MsgNotify> query(PageResult<MsgNotify> pageResult,String curPhone){

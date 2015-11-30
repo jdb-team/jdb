@@ -27,6 +27,9 @@ public class MsgNotify {
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
+    @Column
+    private Integer type;//0发送对象为user 1发送对象为circle
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "cur_userid")
     private User curUser;
@@ -34,4 +37,8 @@ public class MsgNotify {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "ctc_userid")
     private User ctcUser;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ctc_circleid")
+    private Circle ctcCircle;
 }
