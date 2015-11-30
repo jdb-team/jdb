@@ -66,6 +66,7 @@ public class CircleServiceImpl implements ICircleService {
         pageResult = circleDao.queryCircles(pageResult, queryWords);
         for (Circle circle : pageResult.getResultList()) {
             circle.setCmtCount(cirCmtDao.queryCount(circle.getId()));
+            circle.setCount(qCountCircleByid(circle.getId()));
         }
         return CircleView.convert2Json(pageResult.getResultList(), user);
     }
@@ -80,6 +81,7 @@ public class CircleServiceImpl implements ICircleService {
         pageResult = circleDao.queryMyCircles(pageResult, phone, queryWords);
         for (Circle circle : pageResult.getResultList()) {
             circle.setCmtCount(cirCmtDao.queryCount(circle.getId()));
+            circle.setCount(qCountCircleByid(circle.getId()));
         }
         return CircleView.convert2Json(pageResult.getResultList(), user);
     }
@@ -186,9 +188,14 @@ public class CircleServiceImpl implements ICircleService {
         return circleDao.get(Circle.class, id);
     }
 
-    public String saveNickName(Integer id, String nickName) {
+    public String saveNickName(Integer uid, Integer cid, String nickName) {
 
-        JoinUserCircle joinUserCircle = joinUserCircleDao.get(JoinUserCircle.class, id);
+        JoinUserCircle joinUserCircle = joinUserCircleDao.getByUCId(uid,cid);
+
+        if(null == joinUserCircle){
+            return ResponseState.INVALID_ID;
+        }
+
         joinUserCircle.setNickName(nickName);
         joinUserCircleDao.update(joinUserCircle);
 
@@ -204,7 +211,7 @@ public class CircleServiceImpl implements ICircleService {
         if (null == circle) {
             return ResponseState.INVALID_ID;
         }
-        if(user.getId() != circle.getCreateUser().getId()){
+        if (user.getId() != circle.getCreateUser().getId()) {
             return ResponseState.AUTH_CIRCLE;
         }
 

@@ -30,7 +30,7 @@ public interface ICircleService {
 
     Circle queryById(Integer id);
 
-    String saveNickName(Integer id,String nickName);
+    String saveNickName(Integer uid,Integer cid,String nickName);
 
     String delete(String phone, Integer id);
 

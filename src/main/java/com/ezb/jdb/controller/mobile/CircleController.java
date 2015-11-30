@@ -132,15 +132,16 @@ public class CircleController {
     /**
      * 更新昵称
      *
-     * @param id       用户圈子关系id
+     * @param uid      当前用户id
+     * @param cid      用户圈子关系id
      * @param nickName 昵称
      * @return
      */
     @RequestMapping(value = "mobile/circle/nickname")
     public
     @ResponseBody
-    String nickname(Integer id, String nickName) {
-        return circleServiceImpl.saveNickName(id, nickName);
+    String nickname(Integer uid, Integer cid, String nickName) {
+        return circleServiceImpl.saveNickName(uid, cid, nickName);
     }
 
     /**
