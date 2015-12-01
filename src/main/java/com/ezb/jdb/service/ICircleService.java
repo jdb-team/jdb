@@ -30,7 +30,7 @@ public interface ICircleService {
 
     Circle queryById(Integer id);
 
-    String saveNickName(Integer uid,Integer cid,String nickName);
+    String saveNickName(String phone,Integer cid,String nickName);
 
     String delete(String phone, Integer id);
 
@@ -38,4 +38,6 @@ public interface ICircleService {
 
     String batchJoin(String phones,int circleId);
     String exit(String phone, Integer id);
+
+    String viewnickname(String phone, Integer cid);
 }

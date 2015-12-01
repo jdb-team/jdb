@@ -132,7 +132,7 @@ public class CircleController {
     /**
      * 更新昵称
      *
-     * @param uid      当前用户id
+     * @param phone    当前用户phone
      * @param cid      用户圈子关系id
      * @param nickName 昵称
      * @return
@@ -140,20 +140,36 @@ public class CircleController {
     @RequestMapping(value = "mobile/circle/nickname")
     public
     @ResponseBody
-    String nickname(Integer uid, Integer cid, String nickName) {
-        return circleServiceImpl.saveNickName(uid, cid, nickName);
+    String nickname(String phone, Integer cid, String nickName) {
+        return circleServiceImpl.saveNickName(phone, cid, nickName);
+    }
+
+    /**
+     * 查询昵称
+     *
+     * @param phone 当前用户id
+     * @param cid   用户圈子关系id
+     * @return
+     */
+    @RequestMapping(value = "mobile/circle/viewnickname")
+    public
+    @ResponseBody
+    String viewnickname(String phone, Integer cid) {
+        return circleServiceImpl.viewnickname(phone, cid);
     }
 
     /**
      * 查看圈子详情
      *
+     * @param phone 手机号
+     * @param cid   圈子id
      * @return
      */
     @RequestMapping(value = "mobile/circle/viewcircle")
     public
     @ResponseBody
-    String viewCircle(String phone, Integer id) {
-        return circleServiceImpl.viewCircle(phone, id);
+    String viewCircle(String phone, Integer cid) {
+        return circleServiceImpl.viewCircle(phone, cid);
     }
 
     /**
@@ -176,8 +192,8 @@ public class CircleController {
     @RequestMapping(value = "mobile/circle/batchjoin")
     public
     @ResponseBody
-    String batchJoin(String phones,int circleId){
-        return  circleServiceImpl.batchJoin(phones,circleId);
+    String batchJoin(String phones, int circleId) {
+        return circleServiceImpl.batchJoin(phones, circleId);
     }
 
     /**
@@ -190,7 +206,7 @@ public class CircleController {
     @RequestMapping(value = "mobile/circle/exit")
     public
     @ResponseBody
-    String exit(String phone , Integer id){
-        return circleServiceImpl.exit(phone , id);
+    String exit(String phone, Integer id) {
+        return circleServiceImpl.exit(phone, id);
     }
 }

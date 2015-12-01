@@ -188,9 +188,14 @@ public class CircleServiceImpl implements ICircleService {
         return circleDao.get(Circle.class, id);
     }
 
-    public String saveNickName(Integer uid, Integer cid, String nickName) {
+    public String saveNickName(String phone, Integer cid, String nickName) {
 
-        JoinUserCircle joinUserCircle = joinUserCircleDao.getByUCId(uid,cid);
+        User user = userDao.queryByPhone(phone);
+        if(null == user){
+            return ResponseState.INVALID_PHONE;
+        }
+
+        JoinUserCircle joinUserCircle = joinUserCircleDao.getByUCId(user.getId(),cid);
 
         if(null == joinUserCircle){
             return ResponseState.INVALID_ID;
@@ -239,6 +244,18 @@ public class CircleServiceImpl implements ICircleService {
         joinUserCircleDao.deleteById(user.getId() , circle.getId());
         return ResponseState.SUCCESS;
 
+    }
+
+    public String viewnickname(String phone, Integer cid) {
+        User user = userDao.queryByPhone(phone);
+        if(null == user){
+            return ResponseState.INVALID_PHONE;
+        }
+        JoinUserCircle joinUserCircle = joinUserCircleDao.getByUCId(user.getId(),cid);
+        if(null == joinUserCircle){
+            return ResponseState.INVALID_ID;
+        }
+        return ResponseData.getResData(joinUserCircle.getNickName());
     }
 
     /**
