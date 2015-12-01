@@ -1,6 +1,5 @@
 package com.ezb.jdb.controller.mobile;
 
-import com.alibaba.fastjson.serializer.FloatArraySerializer;
 import com.ezb.jdb.common.PageResult;
 import com.ezb.jdb.model.CirCmt;
 import com.ezb.jdb.model.Circle;
@@ -87,7 +86,7 @@ public class CircleControllerTest {
 
     @Test
     public void view() {
-        log.info(circleController.viewCircle("1111111", 12));
+        log.info(circleController.viewCircle("10000000008", 12));
     }
 
     @Test
