@@ -132,7 +132,7 @@ public class CircleController {
     /**
      * 更新昵称
      *
-     * @param phone      当前用户phone
+     * @param phone    当前用户phone
      * @param cid      用户圈子关系id
      * @param nickName 昵称
      * @return
@@ -147,15 +147,15 @@ public class CircleController {
     /**
      * 查询昵称
      *
-     * @param phone      当前用户id
-     * @param cid      用户圈子关系id
+     * @param phone 当前用户id
+     * @param cid   用户圈子关系id
      * @return
      */
     @RequestMapping(value = "mobile/circle/viewnickname")
     public
     @ResponseBody
     String viewnickname(String phone, Integer cid) {
-        return circleServiceImpl.viewnickname(phone,cid);
+        return circleServiceImpl.viewnickname(phone, cid);
     }
 
     /**

@@ -36,7 +36,17 @@ def query(token):
     content = urllib2.urlopen(request).read()
     return content
 
+def view(token):
+    """查看详情"""
+    url = "http://localhost:8080/jdb/mobile/circle/viewcircle"
+    params = {"phone": "10000000008","cid":"1"}
+    post_data = urllib.urlencode(params)
+    request = urllib2.Request(url, post_data)
+    request.add_header("x-access-token", token)
+    content = urllib2.urlopen(request).read()
+    return content
+
 
 if __name__ == '__main__':
     token = user.login()
-    print query(token)
+    print view(token)

@@ -10,7 +10,7 @@ from poster.streaminghttp import register_openers
 
 def login():
     """登录"""
-    url = "http://localhost:8088/jdb/mobile/user/login"
+    url = "http://localhost:8080/jdb/mobile/user/login"
     params = {"username": "13327689964", "password": "100001"}
     post_data = urllib.urlencode(params)
     response = urllib2.urlopen(url, post_data)
