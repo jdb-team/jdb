@@ -118,4 +118,18 @@ public class FriendControllerTest {
         log.info(friendController.queryNearUsers(pageResult, "10000000001"));
     }
 
+    @Test
+    @Rollback(false)
+    public void addFriendApply(){
+        String phone1 = "10000000001";
+        String phone2 = "10000000002";
+        String message = "HelloWorld!";
+        log.info(friendController.addFriendApply(phone1 , phone2 , message));
+
+        String phone3 = "10000000010";
+        String phone4 = "10000000011";
+        String message1 = "HelloWorld!";
+        log.info(friendController.addFriendApply(phone3 , phone4 , message1));
+    }
+
 }

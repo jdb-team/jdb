@@ -628,3 +628,22 @@ CREATE TABLE `circlemessage` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   COMMENT '圈子群聊消息表';
+
+
+-- ----------------------------------------
+-- Table structure for `friendapply`
+-- ----------------------------------------
+CREATE TABLE  `friendapply`(
+  `id`            INT(11) NOT NULL AUTO_INCREMENT
+    COMMENT '主键',
+  `sender`        INT(11)           DEFAULT NULL
+    COMMENT '发送者id',
+  `receiver`      INT(11)           DEFAULT NULL
+    COMMENT '接收者id',
+  `message`       LONGTEXT,
+  `c_time`        DATETIME          DEFAULT NULL
+    COMMENT '请求信息',
+  `state`         INT(11)           DEFAULT NULL
+    COMMENT '接收状态',
+  PRIMARY KEY (`id`)
+)

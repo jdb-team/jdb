@@ -28,6 +28,14 @@ public interface IFriendService {
      */
     String addFriend(String phone1, String phone2);
 
+    /**
+     * 添加好友发送请求
+     * @param phone1
+     * @param phone2
+     * @return
+     */
+    String addFriendApply(String phone1 , String phone2 , String message);
+
     String confireFriend(String phone1, String phone2);
 
     /**

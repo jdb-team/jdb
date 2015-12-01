@@ -162,4 +162,17 @@ public class FriendController {
         return friendServiceImpl.addFriend(phone1, phone2);
     }
 
+    /**
+     * 添加发送请求
+     *
+     * * @param phone1
+     * @param phone2
+     * @return
+     */
+    @RequestMapping(value = "mobile/friend/addfriendapply")
+    public
+    @ResponseBody
+    String addFriendApply(String phone1, String phone2 , String message){
+        return friendServiceImpl.addFriendApply(phone1 , phone2 , message);
+    }
 }
