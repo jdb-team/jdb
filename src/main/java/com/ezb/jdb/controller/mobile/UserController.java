@@ -133,13 +133,8 @@ public class UserController {
     @RequestMapping(value = "mobile/user/viewuser")
     public
     @ResponseBody
-    String viewUser(String phone) {
-
-        User user = userServiceImpl.queryUserByPhone(phone);
-        if (null == user) {
-            return ResponseState.INVALID_PHONE;
-        }
-        return ResponseData.getResData(user);
+    String view(String phone) {
+        return userServiceImpl.view(phone);
     }
 
 }

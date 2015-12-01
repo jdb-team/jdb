@@ -4,10 +4,7 @@ import com.ezb.jdb.common.JdbConstants;
 import com.ezb.jdb.common.PageResult;
 import com.ezb.jdb.common.ResponseData;
 import com.ezb.jdb.common.ResponseState;
-import com.ezb.jdb.dao.AccessKeyDao;
-import com.ezb.jdb.dao.InvitateCodeDao;
-import com.ezb.jdb.dao.UserDao;
-import com.ezb.jdb.dao.VerifyCodeDao;
+import com.ezb.jdb.dao.*;
 import com.ezb.jdb.model.Alumnus;
 import com.ezb.jdb.model.User;
 import com.ezb.jdb.service.IUserService;
@@ -43,6 +40,12 @@ public class UserServiceImpl implements IUserService {
 
     @Resource
     private IPicService picServiceImpl;
+
+    @Resource
+    private TopicDao topicDao;
+
+    @Resource
+    private JoinUserCircleDao joinUserCircleDao;
 
     public String register(User user, String invitateCode, String verifyCode) {
         if (invitateCodeDao.qcByCode(invitateCode) >= 1) {
@@ -253,5 +256,15 @@ public class UserServiceImpl implements IUserService {
         }
         userDao.update(user);
         return ResponseState.SUCCESS;
+    }
+
+    public String view(String phone) {
+        User user =  userDao.queryByPhone(phone);
+        if(null == user){
+            return ResponseState.INVALID_PHONE;
+        }
+        user.setCCount(joinUserCircleDao.qCcount(user.getId()));
+        user.setTCount(topicDao.qTcount(user.getId()));
+        return ResponseData.getResData(user);
     }
 }

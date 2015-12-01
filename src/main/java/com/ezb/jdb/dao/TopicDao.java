@@ -156,4 +156,10 @@ public class TopicDao extends BaseDao<Topic> {
         hql += " order by o.createTime desc";
         return query(MessageFormat.format(hql, paramList.toArray()), pageResult);
     }
+
+    public Integer qTcount(Integer userId) {
+        String hql = "from Topic topic where topic.createUser.id=''{0}''";
+        return queryCount(MessageFormat.format(hql,userId));
+    }
+
 }

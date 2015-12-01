@@ -41,4 +41,6 @@ public interface IUserService {
     PageResult<User> query(PageResult<User> pageResult, String username, String state, Alumnus alumnus, String startTime, String endTime);
 
     String state(Integer id);
+
+    String view(String phone);
 }

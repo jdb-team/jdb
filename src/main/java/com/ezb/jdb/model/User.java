@@ -43,4 +43,10 @@ public class User extends Fmodel {
     @Column(name="c_time")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;//注册日期
+
+    @Transient
+    private Integer cCount;//加入圈子个数
+
+    @Transient
+    private Integer tCount;//发布话题个数
 }
