@@ -3,3 +3,4 @@
 id cur_user_id apply_user_id message state 0 (同意,不同意)
 并将对应 FriendController类中接口
 String queryUnFriend(PageResult<User> pageResult, String phone, Alumnus alumnus, String orderby);改写
+2、环信 用户关系、好友关系、群组关系、消息关系 清除方法
