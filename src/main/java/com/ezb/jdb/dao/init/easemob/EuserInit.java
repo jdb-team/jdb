@@ -39,4 +39,11 @@ public class EuserInit {
             }
         }
     }
+
+    /**
+     * 环信 用户关系的清除方法
+     */
+    public  void  remove(){
+
+    }
 }

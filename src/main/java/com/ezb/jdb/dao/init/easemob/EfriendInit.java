@@ -35,4 +35,11 @@ public class EfriendInit {
             }
         }
     }
+
+    /**
+     * 环信 好友关系的清除方法
+     */
+    public  void  remove(){
+
+    }
 }

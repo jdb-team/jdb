@@ -8,6 +8,7 @@ import com.ezb.jdb.easemob.vo.ClientSecretCredential;
 import com.ezb.jdb.easemob.vo.Credential;
 import com.ezb.jdb.easemob.vo.EndPoints;
 import org.apache.commons.lang.StringUtils;
+import org.apache.http.impl.client.SystemDefaultCredentialsProvider;
 import org.glassfish.jersey.client.JerseyWebTarget;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -349,6 +350,12 @@ public class ChatGroups {
         }
 
         return objectNode;
+    }
+
+    public static  void  main(String[] args){
+        System.out.println(System.getProperty("java.class.path"));
+//        System.out.println(deleteChatGroups("133235631391244844"));
+
     }
 
 }

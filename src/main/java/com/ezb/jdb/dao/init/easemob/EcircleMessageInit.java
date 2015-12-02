@@ -58,4 +58,11 @@ public class EcircleMessageInit {
             }
         }
     }
+
+    /**
+     * 环信 群组消息关系的清除方法
+     */
+    public  void  remove(){
+
+    }
 }

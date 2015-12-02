@@ -20,7 +20,6 @@ import java.util.List;
 @Slf4j
 @Component
 public class EcircleInit {
-
     @Resource
     private CircleDao circleDao;
 
@@ -60,4 +59,13 @@ public class EcircleInit {
             }
         }
     }
+
+    /**
+     * 环信 群组关系的清除方法
+     */
+    public  void  remove(){
+        ObjectNode objectNode = ChatGroups.getAllChatgroupids();
+        log.info(objectNode + "");
+        ChatGroups.deleteChatGroups(objectNode.toString());
+   }
 }
