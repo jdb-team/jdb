@@ -37,4 +37,8 @@ public interface Constants {
 	 */
 	String DEFAULT_PASSWORD = "123456";
 
+	/**
+	 * 是否删除环信数据
+	 */
+	Boolean APP_DELETE_DATA = Boolean.parseBoolean(PropertiesUtils.getProperties().getProperty("APP_DELETE_DATA"));
 }

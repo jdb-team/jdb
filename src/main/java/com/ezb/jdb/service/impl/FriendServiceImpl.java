@@ -42,7 +42,7 @@ public class FriendServiceImpl implements IFriendService {
     }
 
     public String confireFriend(Integer id) {
-        return friendDao.confireFriend(id);
+        return friendApplyDao.confireFriend(id);
     }
 
     public String addFriend(String phone1, String phone2) {
@@ -108,23 +108,23 @@ public class FriendServiceImpl implements IFriendService {
         return ResponseData.getResData(friendApplyDao.queryFriendApply(pageResult,phone));
     }
     public String confireFriend(String phone1, String phone2) {
-        Friend friend = friendDao.queryBy2Phone(phone1, phone2);
+        FriendApply friend = friendApplyDao.queryBy2Phone(phone1, phone2);
         if (null == friend) {
             return ResponseState.FRIEND_APPLY_FRIST;
         } else {
-            friend.setState(true);
-            friend.setConfireDate(new Date());
-            friendDao.update(friend);
+            friend.setState(1);
+            friend.setCreateDate(new Date());
+            friendApplyDao.update(friend);
             return ResponseState.SUCCESS;
         }
     }
 
     public String releaseFriend(String phone1, String phone2) {
-        Friend friend = friendDao.queryBy2Phone(phone1, phone2);
+        FriendApply  friend = friendApplyDao.queryBy2Phone(phone1, phone2);
         if (null == friend) {
             return ResponseState.FRIEND_APPLY_FRIST;
         } else {
-            if (friendDao.release(friend) > 0) {
+            if (friendApplyDao.release(friend) > 0) {
                 return ResponseState.SUCCESS;
             } else {
                 return ResponseState.FAIL;

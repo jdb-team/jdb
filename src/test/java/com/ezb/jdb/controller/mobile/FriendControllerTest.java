@@ -140,4 +140,17 @@ public class FriendControllerTest {
         pageResult.setPageSize(10);
         log.info(friendController.queryFriendApply(pageResult,"10000000002"));
     }
+
+
+    @Test
+    @Rollback(false)
+    public void confireFriend2Phone(){
+        String phone1 = "10000000001";
+        String phone2 = "10000000002";
+        log.info(friendController.confireFriend2Phone(phone1 , phone2));
+
+        String phone3 = "10000000010";
+        String phone4 = "10000000011";
+        log.info(friendController.confireFriend2Phone(phone3 , phone4));
+    }
 }

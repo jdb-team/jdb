@@ -59,7 +59,7 @@ public class FriendController {
     }
 
     /**
-     * 解除好友关系
+     * q确认好友关系
      *
      * @param phone1
      * @param phone2
