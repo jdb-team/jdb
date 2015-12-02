@@ -62,6 +62,9 @@ public class Circle {
     @JSONField(serialize = false)
     private Set<CirCmt> comments;
 
+    @Transient
+    private Integer join;
+
     @Column
     private Integer state;//状态 0下线 1正常
 

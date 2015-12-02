@@ -94,4 +94,16 @@ public class CircleControllerTest {
     public void batchjoin(){
         log.info(circleController.batchJoin("10000000001,10000000002,10000000003,",18));
     }
+
+    @Test
+    @Rollback(false)
+    public void nickName(){
+        log.info(circleController.nickname("10000000002",18,"我的昵称"));
+    }
+
+    @Test
+    @Rollback(false)
+    public void viewnickName(){
+        log.info(circleController.viewnickname("10000000002",18));
+    }
 }

@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
 import java.util.Set;
 
@@ -100,4 +101,11 @@ public class Activity extends Fmodel {
 
     @Column
     private Integer state;//状态 0下线 1正常
+
+    //1 报名中 2 已满员 3 已截止 4 进行中 5 已结束
+    @Transient
+    private Integer timeState;
+
+    @Transient
+    private Integer join;
 }

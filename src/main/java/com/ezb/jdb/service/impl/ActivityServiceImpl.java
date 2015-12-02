@@ -60,7 +60,7 @@ public class ActivityServiceImpl implements IActivityService {
             return ResponseState.INVALID_PHONE;
         }
         pageResult = activityDao.queryActivity(pageResult, queryWords,city,labelId);
-        return ActivityView.convert2Json(pageResult.getResultList(), user);
+        return ActivityView.convert2Json(pageResult, user);
     }
 
     public String queryMyActivity(PageResult<Activity> pageResult,
@@ -70,7 +70,7 @@ public class ActivityServiceImpl implements IActivityService {
             return ResponseState.INVALID_PHONE;
         }
         pageResult = activityDao.queryMyActivity(pageResult, phone, queryWords);
-        return ActivityView.convert2Json(pageResult.getResultList(), user);
+        return ActivityView.convert2Json(pageResult, user);
     }
 
     public String queryMyJoinActivity(PageResult<Activity> pageResult,
@@ -80,7 +80,7 @@ public class ActivityServiceImpl implements IActivityService {
             return ResponseState.INVALID_PHONE;
         }
         pageResult = activityDao.queryMyJoinActivity(pageResult, phone, queryWords);
-        return ActivityView.convert2Json(pageResult.getResultList(), user);
+        return ActivityView.convert2Json(pageResult, user);
     }
 
     public String sendJoinUsers2Email(Integer id) {
@@ -180,7 +180,7 @@ public class ActivityServiceImpl implements IActivityService {
                 activity.setPersonLimit(100000);
             }
             activityDao.add(activity);
-            return ResponseData.getResData(ActivityView.getJsonObject(user, activity));
+            return ResponseData.getResData(ActivityView.convert2Json(activity,user));
         } else {
             return ResponseState.INVALID_PHONE;
         }

@@ -18,10 +18,8 @@ import com.ezb.jdb.tool.JdbFileUtil;
 import com.ezb.jdb.tool.JdbPicUtil;
 import com.ezb.jdb.view.CircleView;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -68,7 +66,7 @@ public class CircleServiceImpl implements ICircleService {
             circle.setCmtCount(cirCmtDao.queryCount(circle.getId()));
             circle.setCount(qCountCircleByid(circle.getId()));
         }
-        return CircleView.convert2Json(pageResult.getResultList(), user);
+        return CircleView.convert2Json(pageResult, user);
     }
 
     public String queryMyCircles(PageResult<Circle> pageResult,
@@ -83,7 +81,7 @@ public class CircleServiceImpl implements ICircleService {
             circle.setCmtCount(cirCmtDao.queryCount(circle.getId()));
             circle.setCount(qCountCircleByid(circle.getId()));
         }
-        return CircleView.convert2Json(pageResult.getResultList(), user);
+        return CircleView.convert2Json(pageResult, user);
     }
 
     public String join(String phone, Integer id) {

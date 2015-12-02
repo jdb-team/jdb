@@ -1,12 +1,9 @@
 package com.ezb.jdb.view;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.ezb.jdb.common.PageResult;
 import com.ezb.jdb.common.ResponseData;
 import com.ezb.jdb.model.Circle;
 import com.ezb.jdb.model.User;
-
-import java.util.List;
 
 /**
  * 圈子视图包装
@@ -15,18 +12,16 @@ import java.util.List;
  */
 public class CircleView {
 
-    public static String convert2Json(List<Circle> list, User user) {
-        JSONArray jsonArray = new JSONArray();
-        for (Circle circle : list) {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("circle", circle);
-            if (null == circle.getMembers() || null != circle.getMembers() && !circle.getMembers().contains(user)) {
-                jsonObject.put("join", "0");
+    public static String convert2Json(PageResult<Circle> pageResult, User user) {
+        for (Circle circle : pageResult.getResultList()) {
+            if (null == circle.getMembers()
+                    || null != circle.getMembers()
+                    && !circle.getMembers().contains(user)) {
+                circle.setJoin(0);
             } else {
-                jsonObject.put("join", "1");
+                circle.setJoin(1);
             }
-            jsonArray.add(jsonObject);
         }
-        return ResponseData.getResData(jsonArray);
+        return ResponseData.getResData(pageResult);
     }
 }

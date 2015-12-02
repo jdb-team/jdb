@@ -1,13 +1,11 @@
 package com.ezb.jdb.view;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.ezb.jdb.common.PageResult;
 import com.ezb.jdb.common.ResponseData;
 import com.ezb.jdb.model.Activity;
 import com.ezb.jdb.model.User;
 import org.joda.time.DateTime;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,54 +15,23 @@ import java.util.Set;
  */
 public class ActivityView {
 
-    public static String convert2Json(List<Activity> list, User user) {
-        JSONArray jsonArray = new JSONArray();
-        for (Activity activity : list) {
-            JSONObject jsonObject = getJsonObject(user, activity);
-            jsonArray.add(jsonObject);
+    public static String convert2Json(PageResult<Activity> pageResult, User user) {
+        for (Activity activity : pageResult.getResultList()) {
+            convert2Json(activity, user);
         }
-        return ResponseData.getResData(jsonArray);
+        return ResponseData.getResData(pageResult);
     }
 
-    public static JSONObject getJsonObject(User user, Activity activity) {
-
-        JSONObject jsonObject = new JSONObject();
-        DateTime dateTime = new DateTime(activity.getStartTime());
-
-        jsonObject.put("id", activity.getId());
-        jsonObject.put("year", dateTime.toString("yyyy"));
-        jsonObject.put("month", dateTime.toString("MM月"));
-        jsonObject.put("day", dateTime.toString("dd日"));
-        jsonObject.put("week", dateTime.dayOfWeek().getAsShortText());
-        jsonObject.put("title", activity.getTitle());
-        jsonObject.put("address", activity.getAddress());
-        jsonObject.put("startTime", dateTime.toString("yyyy-MM-dd HH:mm"));
-        jsonObject.put("endTime", new DateTime(activity.getEndTime()).toString("yyyy-MM-dd HH:mm"));
-
-        if(null == activity.getStartTime()){
-            jsonObject.put("year", "");
-            jsonObject.put("month", "");
-            jsonObject.put("day", "");
-            jsonObject.put("startTime", "");
-        }
-
-        if(null == activity.getEndTime()){
-            jsonObject.put("endTime", "");
-        }
-
-        if (null == activity.getJoinUsers()) {
-            jsonObject.put("joinCount", 0);
+    public static Activity convert2Json(Activity activity, User user) {
+        if (null == activity.getJoinUsers()
+                || null != activity.getJoinUsers()
+                && activity.getJoinUsers().contains(user)) {
+            activity.setJoin(0);
         } else {
-            jsonObject.put("joinCount", activity.getJoinUsers().size());
+            activity.setJoin(1);
         }
-        jsonObject.put("state", getState(activity));
-
-        if (null == activity.getJoinUsers() || !activity.getJoinUsers().contains(user)) {
-            jsonObject.put("join", "0");
-        } else {
-            jsonObject.put("join", "1");
-        }
-        return jsonObject;
+        activity.setTimeState(getState(activity));
+        return activity;
     }
 
     /**
@@ -73,26 +40,26 @@ public class ActivityView {
      * @param activity
      * @return
      */
-    public static String getState(Activity activity) {
+    public static Integer getState(Activity activity) {
         DateTime nowTime = DateTime.now();
         if (nowTime.isAfter(new DateTime(activity.getCloseTime()))) {
-            return "3";
+            return 3;
         }
         if (nowTime.isAfter(new DateTime(activity.getStartTime()))
                 && nowTime.isBefore(new DateTime(activity.getEndTime()))) {
-            return "4";
+            return 4;
         }
         if (nowTime.isAfter(new DateTime(activity.getEndTime()))) {
-            return "5";
+            return 5;
         }
         if (activity.getJoinUsers() == null ||
                 activity.getJoinUsers().size() < activity.getPersonLimit()) {
-            return "1";
+            return 1;
         }
         if (activity.getJoinUsers().size() >= activity.getPersonLimit()) {
-            return "2";
+            return 2;
         }
-        return "";
+        return -1;
     }
 
     public static String buildHtmlContent(Set<User> joinUsers) {
