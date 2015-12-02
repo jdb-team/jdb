@@ -55,4 +55,18 @@ public class FriendDao extends BaseDao<Friend> {
         String sql = "delete from friend where friend_id=''{0}'' and user_id=''{1}'' or user_id=''{0}'' and friend_id=''{1}''";
         return executeSql(MessageFormat.format(sql,friend.getFriend().getId(),friend.getUser().getId()));
     }
+
+    public int release(Integer friendIs, Integer uerId) {
+        String sql = "update friend set state = '0' where friend_id=''{0}'' and user_id=''{1}'' or user_id=''{0}'' and friend_id=''{1}''";
+        return executeSql(MessageFormat.format(sql,friendIs,uerId));
+    }
+
+    public String update(Integer friendIs, Integer uerId) {
+        String sql = "update friend set state = '1' where friend_id=''{0}'' and user_id=''{1}'' or user_id=''{0}'' and friend_id=''{1}''";
+        if(executeSql(MessageFormat.format(sql,friendIs,uerId)) > 0){
+            return  ResponseState.SUCCESS;
+        }else {
+            return ResponseState.FAIL;
+        }
+    }
 }

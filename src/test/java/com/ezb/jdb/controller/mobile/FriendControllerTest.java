@@ -153,4 +153,12 @@ public class FriendControllerTest {
         String phone4 = "10000000011";
         log.info(friendController.confireFriend2Phone(phone3 , phone4));
     }
+
+    @Test
+    @Rollback(false)
+    public void release() {
+        String phone3 = "10000000010";
+        String phone4 = "10000000011";
+        log.info(friendController.release(phone3, phone4));
+    }
 }

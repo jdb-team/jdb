@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.text.MessageFormat;
 import java.util.Date;
 
 /**
@@ -42,13 +43,29 @@ public class FriendServiceImpl implements IFriendService {
     }
 
     public String confireFriend(Integer id) {
-        return friendApplyDao.confireFriend(id);
+
+        int config = friendApplyDao.confireFriend(id);
+        if (config != 1) {
+            return ResponseState.CONFIRE_FRIEND_ERR;
+        } else {
+            FriendApply friendApply = friendApplyDao.queryById(id);
+            if (null != friendApply) {
+                String phone1 = friendApply.getSender().getUsername();
+                String phone2 = friendApply.getReceiver().getUsername();
+                addFriend(phone1, phone2);
+            }
+            return ResponseState.SUCCESS;
+        }
+
     }
 
     public String addFriend(String phone1, String phone2) {
 
-        if (friendDao.queryBy2Phone(phone1, phone2) != null) {
-            return ResponseState.FRIEND_ADDED;
+        Friend friend0 = friendDao.queryBy2Phone(phone1, phone2);
+        if (null != friend0) {
+            Integer id1 = friend0.getUser().getId();
+            Integer id2 = friend0.getFriend().getId();
+            return friendDao.update(id1, id2);
         }
 
         User user1 = userDao.queryByPhone(phone1);
@@ -61,8 +78,8 @@ public class FriendServiceImpl implements IFriendService {
         Friend friend = new Friend();
         friend.setUser(user1);
         friend.setFriend(user2);
-        friend.setApplyDate(new Date());
-        friend.setState(false);
+        friend.setConfireDate(new Date());
+        friend.setState(true);
 
         friend.setDistance(
                 JdbGisUtil.getDistance(
@@ -77,13 +94,13 @@ public class FriendServiceImpl implements IFriendService {
         return ResponseState.SUCCESS;
     }
 
-    public String addFriendApply(String phone1 , String phone2 , String message){
-        if(friendDao.queryBy2Phone(phone1 , phone2) != null){
+    public String addFriendApply(String phone1, String phone2, String message) {
+        if (friendDao.queryBy2Phone(phone1, phone2) != null) {
             return ResponseState.FRIEND_ADDED;
         }
         User sender = userDao.queryByPhone(phone1);
         User receiver = userDao.queryByPhone(phone2);
-        if(sender == null || receiver == null){
+        if (sender == null || receiver == null) {
             return ResponseState.INVALID_PHONE;
         }
         FriendApply friendApply = new FriendApply();
@@ -97,16 +114,17 @@ public class FriendServiceImpl implements IFriendService {
 
     }
 
-    public String queryFriendApply(PageResult<FriendApply> pageResult, String phone){
-        if(StringUtils.isEmpty(phone)){
+    public String queryFriendApply(PageResult<FriendApply> pageResult, String phone) {
+        if (StringUtils.isEmpty(phone)) {
             return ResponseState.INVALID_PHONE;
         }
         User receiver = userDao.queryByPhone(phone);
-        if(receiver == null){
+        if (receiver == null) {
             return ResponseState.INVALID_PHONE;
         }
-        return ResponseData.getResData(friendApplyDao.queryFriendApply(pageResult,phone));
+        return ResponseData.getResData(friendApplyDao.queryFriendApply(pageResult, phone));
     }
+
     public String confireFriend(String phone1, String phone2) {
         FriendApply friend = friendApplyDao.queryBy2Phone(phone1, phone2);
         if (null == friend) {
@@ -115,20 +133,29 @@ public class FriendServiceImpl implements IFriendService {
             friend.setState(1);
             friend.setCreateDate(new Date());
             friendApplyDao.update(friend);
+            addFriend(phone1, phone2);
             return ResponseState.SUCCESS;
         }
     }
 
     public String releaseFriend(String phone1, String phone2) {
-        FriendApply  friend = friendApplyDao.queryBy2Phone(phone1, phone2);
+        FriendApply friend = friendApplyDao.queryBy2Phone(phone1, phone2);
         if (null == friend) {
             return ResponseState.FRIEND_APPLY_FRIST;
         } else {
             if (friendApplyDao.release(friend) > 0) {
-                return ResponseState.SUCCESS;
-            } else {
-                return ResponseState.FAIL;
+                Integer senderId = friend.getSender().getId();
+                Integer receverId = friend.getReceiver().getId();
+                if (friendDao.release(senderId, receverId) > 0) {
+                    return ResponseState.SUCCESS;
+                }else {
+                    return  ResponseState.FAIL;
+                }
+
+            }else {
+                return  ResponseState.FAIL;
             }
+
         }
     }
 }

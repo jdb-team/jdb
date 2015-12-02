@@ -23,14 +23,14 @@ public class FriendApplyDao extends BaseDao<FriendApply>{
         return query(MessageFormat.format(hql, phone), pageResult);
     }
 
-    public String confireFriend(Integer id) {
-        String hql = "update FriendApply  set f.createDate=now() where o.id=''{0}''";
-        if(executeHql(MessageFormat.format(hql,id)) != 1){
-            return ResponseState.CONFIRE_FRIEND_ERR;
-        }else{
+    public FriendApply queryById(Integer id){
+        String hql = "from FriendApply f where f.id = ''{0}''";
+        return queryUnique(MessageFormat.format(hql,id));
+    }
 
-            return ResponseState.SUCCESS;
-        }
+    public int confireFriend(Integer id) {
+        String hql = "update FriendApply  set f.createDate=now() where o.id=''{0}''";
+        return  executeSql(MessageFormat.format(hql,id));
     }
 
     public FriendApply queryBy2Phone(String phone1, String phone2){
