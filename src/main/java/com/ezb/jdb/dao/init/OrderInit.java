@@ -5,7 +5,6 @@ import com.ezb.jdb.dao.init.easemob.*;
 import com.ezb.jdb.dao.init.jdb.*;
 import com.ezb.jdb.easemob.comm.Constants;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.mapping.Join;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -65,7 +64,7 @@ public class OrderInit {
     private CircleMessageInit circleMessageInit;
 
     @Resource
-    private EuserInit euserInit;
+    private EuserInit euser;
 
     @Resource
     private EfriendInit efriendInit;
@@ -77,7 +76,7 @@ public class OrderInit {
     private EmessageInit emessageInit;
 
     @Resource
-    private EcircleMessageInit ecircleMessageInit;
+    private EcircleMessageInit ecircleMessage;
 
     @Resource
     private JoinUserCircleInit joinUserCircleInit;
@@ -145,7 +144,7 @@ public class OrderInit {
     private void initEaseMob(){
         log.info("=============== start initEaseMob ==============");
 
-        euserInit.init();
+        euser.init();
         log.info("end init user");
 
         efriendInit.init();
@@ -157,10 +156,34 @@ public class OrderInit {
         emessageInit.init();
         log.info("end init message");
 
-        ecircleMessageInit.init();
+        ecircleMessage.init();
         log.info("end init circlemessage");
 
         log.info("=============== end initEaseMob ==============");
+    }
+
+    /**
+     * 删除环信相关数
+     */
+    private void deleteEaseMob(){
+        log.info("=============== start deleteEaseMob ==============");
+
+        euser.remove();
+        log.info("end delete user");
+
+        efriendInit.remove();
+        log.info("end delete friend");
+
+        ecircleInit.remove();
+        log.info("end delete circle");
+
+        emessageInit.remove();
+        log.info("end delete message");
+
+        ecircleMessage.remove();
+        log.info("end delete circlemessage");
+
+        log.info("=============== end deleteEaseMob ==============");
     }
 
     /**
@@ -175,5 +198,18 @@ public class OrderInit {
         if(Constants.INIT_DATA){
             initEaseMob();
         }
+
+        if (Constants.APP_DELETE_DATA) {
+            deleteEaseMob();
+        }
     }
+    /**
+     *删除环信数据
+     */
+    public void orderDelete() {
+        if (Constants.APP_DELETE_DATA) {
+            deleteEaseMob();
+        }
+    }
+
 }
