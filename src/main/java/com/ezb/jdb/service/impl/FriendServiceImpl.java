@@ -61,11 +61,9 @@ public class FriendServiceImpl implements IFriendService {
 
     public String addFriend(String phone1, String phone2) {
 
-        Friend friend0 = friendDao.queryBy2Phone(phone1, phone2);
-        if (null != friend0) {
-            Integer id1 = friend0.getUser().getId();
-            Integer id2 = friend0.getFriend().getId();
-            return friendDao.update(id1, id2);
+        if (null != friendDao.queryBy2Phone(phone1, phone2)) {
+
+            return ResponseState.FRIEND_ADDED;
         }
 
         User user1 = userDao.queryByPhone(phone1);
@@ -79,8 +77,6 @@ public class FriendServiceImpl implements IFriendService {
         friend.setUser(user1);
         friend.setFriend(user2);
         friend.setConfireDate(new Date());
-        friend.setState(true);
-
         friend.setDistance(
                 JdbGisUtil.getDistance(
                         user1.getAlumnus().getLat(),

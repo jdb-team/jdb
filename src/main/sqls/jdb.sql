@@ -266,8 +266,6 @@ CREATE TABLE `friend` (
   COMMENT '创建时间',
   `distance`  DOUBLE           DEFAULT NULL
   COMMENT '距离',
-  `state`     BIT(1)           DEFAULT NULL
-  COMMENT '状态',
   `friend_id` INT(11)          DEFAULT NULL
   COMMENT '朋友编号',
   `user_id`   INT(11)          DEFAULT NULL

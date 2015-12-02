@@ -99,17 +99,17 @@ public class FriendControllerTest {
         log.info(friendController.queryAllFriend(pageResult, "10000000006", null, JdbConstants.ORDERBY_LOCATION));
     }
 
-    @Test
-    @Rollback(false)
-    public void addFriend(){
-        String phone1 = "10000000001";
-        String phone2 = "10000000002";
-        log.info(friendController.addFriend(phone1, phone2));
-
-        String phone3 = "2323232";
-        String phone4 = "232323";
-        log.info(friendController.addFriend(phone3, phone4));
-    }
+//    @Test
+//    @Rollback(false)
+//    public void addFriend(){
+//        String phone1 = "10000000001";
+//        String phone2 = "10000000002";
+//        log.info(friendController.addFriend(phone1, phone2));
+//
+//        String phone3 = "2323232";
+//        String phone4 = "232323";
+//        log.info(friendController.addFriend(phone3, phone4));
+//    }
 
     @Test
     public void queryNearUsers(){

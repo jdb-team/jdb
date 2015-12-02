@@ -38,14 +38,14 @@ public class FriendInit {
                 friend.setDistance(distance);
                 int stateId = rd.nextInt(2);
 
-                boolean state;
-                if (stateId == 1) {
-                    state = true;
-                } else {
-                    state = false;
-                }
-
-                friend.setState(state);
+//                boolean state;
+//                if (stateId == 1) {
+//                    state = true;
+//                } else {
+//                    state = false;
+//                }
+//
+//                friend.setState(state);
                 int UserId = i;
 
                 int friendId = rd.nextInt(100) + 1;
