@@ -4,6 +4,7 @@ import com.ezb.jdb.common.JdbConstants;
 import com.ezb.jdb.common.PageResult;
 import com.ezb.jdb.model.Alumnus;
 import com.ezb.jdb.model.Friend;
+import com.ezb.jdb.model.FriendApply;
 import com.ezb.jdb.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -34,12 +35,12 @@ public class FriendControllerTest {
         PageResult<Friend> pageResult = new PageResult<Friend>();
         pageResult.setCurPage(1);
         pageResult.setPageSize(10);
-        log.info(friendController.queryFriend(pageResult, "10000000003", null, 1));
-        log.info(friendController.queryFriend(pageResult, "10000000003", null, 0));
+        log.info(friendController.queryFriend(pageResult, "10000000003", null));
+        log.info(friendController.queryFriend(pageResult, "10000000003", null));
 
-        log.info(friendController.queryFriend(pageResult, "10000000006",null, 1));
-        log.info(friendController.queryFriend(pageResult, "10000000006","realname64", 1));
-        log.info(friendController.queryFriend(pageResult, "10000000006","realname44", 1));
+        log.info(friendController.queryFriend(pageResult, "10000000006",null));
+        log.info(friendController.queryFriend(pageResult, "10000000006","realname64"));
+        log.info(friendController.queryFriend(pageResult, "10000000006","realname44"));
     }
 
     @Test
@@ -132,4 +133,11 @@ public class FriendControllerTest {
         log.info(friendController.addFriendApply(phone3 , phone4 , message1));
     }
 
+    @Test
+    public void queryFriendApply(){
+        PageResult<FriendApply> pageResult = new PageResult<FriendApply>();
+        pageResult.setCurPage(1);
+        pageResult.setPageSize(10);
+        log.info(friendController.queryFriendApply(pageResult,"10000000002"));
+    }
 }

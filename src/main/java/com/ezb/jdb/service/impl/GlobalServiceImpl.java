@@ -47,7 +47,7 @@ public class GlobalServiceImpl implements IGlobalService {
         circlePageResult = circleDao.queryCircles(circlePageResult, keyword);
         activityPageResult = activityDao.queryActivity(activityPageResult, keyword,"","2");
         topicPageResult = topicDao.queryTopic(topicPageResult, keyword);
-        friendPageResult = friendDao.queryFriend(friendPageResult, phone, keyword, 1);
+        friendPageResult = friendDao.queryFriend(friendPageResult, phone, keyword);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("circlePageResult", circlePageResult);

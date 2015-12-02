@@ -2,6 +2,8 @@ package com.ezb.jdb.service;
 
 import com.ezb.jdb.common.PageResult;
 import com.ezb.jdb.model.Friend;
+import com.ezb.jdb.model.FriendApply;
+import com.ezb.jdb.model.Topic;
 
 /**
  * 通讯录
@@ -11,7 +13,7 @@ import com.ezb.jdb.model.Friend;
 public interface IFriendService {
 
     PageResult<Friend> queryFriend(PageResult<Friend> pageResult, String phone,
-                                   String queryWords,Integer state);
+                                   String queryWords);
 
     /**
      * 确认好友关系
@@ -35,6 +37,14 @@ public interface IFriendService {
      * @return
      */
     String addFriendApply(String phone1 , String phone2 , String message);
+
+    /**
+     * 查询好友申请记录
+     * @param pageResult
+     * @param phone
+     * @return
+     */
+    String queryFriendApply(PageResult<FriendApply> pageResult, String phone);
 
     String confireFriend(String phone1, String phone2);
 

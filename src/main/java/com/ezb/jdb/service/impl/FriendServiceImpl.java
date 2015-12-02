@@ -1,16 +1,19 @@
 package com.ezb.jdb.service.impl;
 
 import com.ezb.jdb.common.PageResult;
+import com.ezb.jdb.common.ResponseData;
 import com.ezb.jdb.common.ResponseState;
 import com.ezb.jdb.dao.FriendApplyDao;
 import com.ezb.jdb.dao.FriendDao;
 import com.ezb.jdb.dao.UserDao;
 import com.ezb.jdb.model.Friend;
 import com.ezb.jdb.model.FriendApply;
+import com.ezb.jdb.model.Topic;
 import com.ezb.jdb.model.User;
 import com.ezb.jdb.service.IFriendService;
 import com.ezb.jdb.tool.JdbGisUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -33,9 +36,9 @@ public class FriendServiceImpl implements IFriendService {
     private UserDao userDao;
 
     public PageResult<Friend> queryFriend(PageResult<Friend> pageResult, String phone,
-                                          String queryWords, Integer state) {
+                                          String queryWords) {
 
-        return friendDao.queryFriend(pageResult, phone, queryWords, state);
+        return friendDao.queryFriend(pageResult, phone, queryWords);
     }
 
     public String confireFriend(Integer id) {
@@ -92,6 +95,17 @@ public class FriendServiceImpl implements IFriendService {
         friendApplyDao.add(friendApply);
         return ResponseState.SUCCESS;
 
+    }
+
+    public String queryFriendApply(PageResult<FriendApply> pageResult, String phone){
+        if(StringUtils.isEmpty(phone)){
+            return ResponseState.INVALID_PHONE;
+        }
+        User receiver = userDao.queryByPhone(phone);
+        if(receiver == null){
+            return ResponseState.INVALID_PHONE;
+        }
+        return ResponseData.getResData(friendApplyDao.queryFriendApply(pageResult,phone));
     }
     public String confireFriend(String phone1, String phone2) {
         Friend friend = friendDao.queryBy2Phone(phone1, phone2);

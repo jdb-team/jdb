@@ -2,9 +2,7 @@ package com.ezb.jdb.controller.mobile;
 
 import com.ezb.jdb.common.PageResult;
 import com.ezb.jdb.common.ResponseState;
-import com.ezb.jdb.model.Alumnus;
-import com.ezb.jdb.model.Friend;
-import com.ezb.jdb.model.User;
+import com.ezb.jdb.model.*;
 import com.ezb.jdb.service.IFriendService;
 import com.ezb.jdb.service.IUserService;
 import com.ezb.jdb.view.FriendView;
@@ -35,15 +33,14 @@ public class FriendController {
      * @param pageResult
      * @param phone 当前用户的手机号
      * @param queryWords 查询关键字
-     * @param state      0 带通过的好友 1表示已通过的好友
      * @return
      */
     @RequestMapping(value = "mobile/friend/queryfriend")
     public
     @ResponseBody
-    String queryFriend(PageResult<Friend> pageResult, String phone, String queryWords, Integer state) {
+    String queryFriend(PageResult<Friend> pageResult, String phone, String queryWords) {
         List<Friend> list = friendServiceImpl.queryFriend(
-                pageResult, phone, queryWords, state).getResultList();
+                pageResult, phone, queryWords).getResultList();
         User user = userServiceImpl.queryUserByPhone(phone);
         return FriendView.convert2Json(user,list);
     }
@@ -165,7 +162,7 @@ public class FriendController {
     /**
      * 添加发送请求
      *
-     * * @param phone1
+     * @param phone1
      * @param phone2
      * @return
      */
@@ -174,5 +171,18 @@ public class FriendController {
     @ResponseBody
     String addFriendApply(String phone1, String phone2 , String message){
         return friendServiceImpl.addFriendApply(phone1 , phone2 , message);
+    }
+
+    /**
+     * 查询好友请求列表
+     *
+     * @param  phone
+     * @return
+     */
+    @RequestMapping(value = "mobile/friend/queryfriendapply")
+    public
+    @ResponseBody
+    String queryFriendApply(PageResult<FriendApply> pageResult, String phone){
+        return friendServiceImpl.queryFriendApply(pageResult,phone);
     }
 }
