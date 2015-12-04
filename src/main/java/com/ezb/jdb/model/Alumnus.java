@@ -72,6 +72,9 @@ public class Alumnus {
     @JSONField(serialize = false)
     private User user;
 
+    @Transient
+    private Integer userId;
+
     public boolean equals(Object obj) {
         return (this == obj);
     }
@@ -82,5 +85,9 @@ public class Alumnus {
 
     public String toString() {
         return getClass().getName() + "@" + Integer.toHexString(hashCode());
+    }
+
+    public Integer getUserId(){
+        return user.getId();
     }
 }
