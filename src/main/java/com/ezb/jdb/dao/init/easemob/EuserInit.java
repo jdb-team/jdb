@@ -43,7 +43,11 @@ public class EuserInit {
     /**
      * 环信 用户关系的清除方法
      */
-    public  void  remove(){
-
+    public void  remove(){
+        List<User> list = userDao.queryAll();
+        Long count = (long) list.size();
+        if(count > 0){
+            log.info( ImUsers.deleteIMUserByUsernameBatch(count,null).toString());
+        }
     }
 }

@@ -127,7 +127,6 @@ public class FriendServiceImpl implements IFriendService {
             return ResponseState.FRIEND_APPLY_FRIST;
         } else {
             friend.setState(1);
-            friend.setCreateDate(new Date());
             friendApplyDao.update(friend);
             addFriend(phone1, phone2);
             return ResponseState.SUCCESS;

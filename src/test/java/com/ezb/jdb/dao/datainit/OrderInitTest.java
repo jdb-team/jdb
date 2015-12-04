@@ -25,9 +25,6 @@ public class OrderInitTest {
     @Resource
     private OrderInit orderInit;
 
-    @Resource
-    private EcircleInit ecircleInit;
-
     @Test
     @Rollback(false)
     public void init(){
@@ -35,7 +32,9 @@ public class OrderInitTest {
     }
 
     @Test
-    public void  circleRemove(){
-        ecircleInit.remove();
+    @Rollback(false)
+    public void delete(){
+        orderInit.orderDelete();
     }
+
 }

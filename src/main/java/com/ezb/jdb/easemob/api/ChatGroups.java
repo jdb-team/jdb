@@ -351,11 +351,4 @@ public class ChatGroups {
 
         return objectNode;
     }
-
-    public static  void  main(String[] args){
-        System.out.println(System.getProperty("java.class.path"));
-//        System.out.println(deleteChatGroups("133235631391244844"));
-
-    }
-
 }

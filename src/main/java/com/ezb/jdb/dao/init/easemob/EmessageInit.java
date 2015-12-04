@@ -53,11 +53,4 @@ public class EmessageInit {
             }
         }
     }
-
-    /**
-     * 环信 消息关系的清除方法
-     */
-    public  void  remove(){
-
-    }
 }

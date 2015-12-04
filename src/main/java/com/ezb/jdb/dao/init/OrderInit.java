@@ -171,17 +171,10 @@ public class OrderInit {
         euser.remove();
         log.info("end delete user");
 
-        efriendInit.remove();
-        log.info("end delete friend");
 
         ecircleInit.remove();
         log.info("end delete circle");
 
-        emessageInit.remove();
-        log.info("end delete message");
-
-        ecircleMessage.remove();
-        log.info("end delete circlemessage");
 
         log.info("=============== end deleteEaseMob ==============");
     }
@@ -197,10 +190,6 @@ public class OrderInit {
 
         if(Constants.INIT_DATA){
             initEaseMob();
-        }
-
-        if (Constants.APP_DELETE_DATA) {
-            deleteEaseMob();
         }
     }
     /**
