@@ -29,8 +29,8 @@ public class FriendApplyDao extends BaseDao<FriendApply>{
     }
 
     public int confireFriend(Integer id) {
-        String hql = "update FriendApply  set f.createDate=now() where o.id=''{0}''";
-        return  executeSql(MessageFormat.format(hql,id));
+        String hql = "update FriendApply f set f.state=1 where f.id=''{0}''";
+        return  executeHql(MessageFormat.format(hql,id));
     }
 
     public FriendApply queryBy2Phone(String phone1, String phone2){

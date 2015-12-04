@@ -27,7 +27,7 @@ public class FriendDao extends BaseDao<Friend> {
                                           String queryWords) {
 
         String hql = "from Friend o where (o.user.username=''{0}'' or o.friend.username=''{0}'') " +
-                "and o.state=''{1}'' and o.user.state=1 ";
+                " and o.user.state=1 ";
 
         if(!StringUtils.isEmpty(queryWords)){
             hql += " and (o.user.alumnus.realName like ''%{2}%'' or o.friend.alumnus.realName like ''%{2}%'')";
@@ -35,16 +35,6 @@ public class FriendDao extends BaseDao<Friend> {
 
         return query(MessageFormat.format(hql,phone,queryWords),pageResult);
     }
-
-    public String confireFriend(Integer id) {
-        String hql = "update Friend o set o.confireDate=now() where o.id=''{0}''";
-        if(executeHql(MessageFormat.format(hql,id)) != 1){
-            return ResponseState.CONFIRE_FRIEND_ERR;
-        }else{
-            return ResponseState.SUCCESS;
-        }
-    }
-
     public Friend queryBy2Phone(String phone1,String phone2){
         String hql = "from Friend o where (o.user.username=''{0}'' and o.friend.username=''{1}'' " +
                 "or o.user.username=''{1}'' and o.friend.username=''{0}'' and o.user.state=1 )";
