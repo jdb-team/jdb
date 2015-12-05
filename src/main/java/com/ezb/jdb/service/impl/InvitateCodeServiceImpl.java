@@ -47,6 +47,10 @@ public class InvitateCodeServiceImpl implements IInvitateCodeService {
         pageResult = invitateCodeDao.queryByUserId(pageResult, user.getId());
         if (pageResult.getResultList().size() > 0) {
             invitateCode =  pageResult.getResultList().get(0);
+            Date date = new Date();
+            invitateCode.setCode(ShareCodeUtil.shareCode());
+            invitateCode.setCreateTime(date);
+            invitateCodeDao.update(invitateCode);
         }
 
         if (null != invitateCode) {

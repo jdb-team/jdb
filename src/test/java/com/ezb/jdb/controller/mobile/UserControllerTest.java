@@ -79,6 +79,6 @@ public class UserControllerTest {
     @Test
     @Rollback(false)
     public void makeInvitateCode(){
-        log.info(userController.invitateCode("11111112"));
+        log.info(userController.invitateCode("10000000008"));
     }
 }
