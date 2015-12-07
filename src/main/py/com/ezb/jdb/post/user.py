@@ -10,7 +10,7 @@ from poster.streaminghttp import register_openers
 
 def login():
     """登录"""
-    url = "http://localhost:8080/jdb/mobile/user/login"
+    url = "http://localhost:8088/jdb/mobile/user/login"
     params = {"username": "13327689964", "password": "100001"}
     post_data = urllib.urlencode(params)
     response = urllib2.urlopen(url, post_data)
@@ -21,7 +21,7 @@ def login():
 
 def perfinfo(token):
     """完善个人信息"""
-    url = "http://localhost:8000/jdb/mobile/user/perfinfo"
+    url = "http://localhost:8088/jdb/mobile/user/perfinfo"
     register_openers()
     params = {"phone": "1111111", "pic1": open("aa.png", "rb"),
               "pic2": open("bb.png", "rb")}

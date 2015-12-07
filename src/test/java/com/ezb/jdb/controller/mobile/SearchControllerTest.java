@@ -1,10 +1,7 @@
 package com.ezb.jdb.controller.mobile;
 
 import com.ezb.jdb.common.PageResult;
-import com.ezb.jdb.model.Activity;
-import com.ezb.jdb.model.Circle;
-import com.ezb.jdb.model.Friend;
-import com.ezb.jdb.model.Topic;
+import com.ezb.jdb.model.*;
 import junit.framework.TestCase;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -36,7 +33,7 @@ public class SearchControllerTest extends TestCase {
         PageResult<Topic> topicPageResult = new PageResult<Topic>();
         PageResult<Friend> friendPageResult = new PageResult<Friend>();
 
-        SearchController.SearchPageResult searchPageResult =  searchController.new SearchPageResult();
+        SearchPageResult searchPageResult =  new SearchPageResult();
 
         searchPageResult.setCirclePageResult(circlePageResult);
         searchPageResult.setActivityPageResult(activityPageResult);

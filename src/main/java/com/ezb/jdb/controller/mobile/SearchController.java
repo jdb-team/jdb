@@ -1,13 +1,7 @@
 package com.ezb.jdb.controller.mobile;
 
-import com.ezb.jdb.common.PageResult;
-import com.ezb.jdb.model.Activity;
-import com.ezb.jdb.model.Circle;
-import com.ezb.jdb.model.Friend;
-import com.ezb.jdb.model.Topic;
-import com.ezb.jdb.service.IAtvCmtService;
+import com.ezb.jdb.model.SearchPageResult;
 import com.ezb.jdb.service.IGlobalService;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,13 +45,5 @@ public class SearchController {
                 searchPageResult.getFriendPageResult(),
                 keyword
         );
-    }
-
-    @Data
-    class SearchPageResult {
-        private PageResult<Circle> circlePageResult;    //圈子
-        private PageResult<Activity> activityPageResult;//活动
-        private PageResult<Topic> topicPageResult;      //话题
-        private PageResult<Friend> friendPageResult;    //好友
     }
 }
