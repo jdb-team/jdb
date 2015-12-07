@@ -34,15 +34,27 @@ public class CircleController {
     private IJoinUserCircleService joinUserCircleServiceImpl;
 
     /**
-     * 创建/更新圈子
+     * 创建圈子
      *
      * @return
      */
-    @RequestMapping(value = "pc/admin/circle/save")
+    @RequestMapping(value = "mobile/circle/create")
+    public
+    @ResponseBody
+    String save(HttpServletRequest request, String phone, Circle circle,String uids) {
+        return circleServiceImpl.create(request, phone, circle,uids);
+    }
+
+    /**
+     * 更新圈子
+     *
+     * @return
+     */
+    @RequestMapping(value = "mobile/circle/update")
     public
     @ResponseBody
     String save(HttpServletRequest request, String phone, Circle circle) {
-        return circleServiceImpl.save(request, phone, circle);
+        return circleServiceImpl.update(request, phone, circle);
     }
 
     /**

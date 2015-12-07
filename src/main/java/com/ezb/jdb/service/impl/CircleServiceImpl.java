@@ -30,6 +30,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 /**
  * 圈子
@@ -121,27 +122,35 @@ public class CircleServiceImpl implements ICircleService {
         return circleDao.query(pageResult, id, title, realName, state, startTime, endTime);
     }
 
-    public String save(HttpServletRequest request, String phone, Circle circle) {
+    public String create(HttpServletRequest request, String phone, Circle circle, String uids) {
         User user = userDao.queryByPhone(phone);
         if (null == user) {
             return ResponseState.INVALID_PHONE;
         }
-
-        if (uploadPics(request, circle)) { //图片上传
-            if (null != circle.getId()) {
-                Circle oldCircle = circleDao.get(Circle.class, circle.getId());
-                JdbBeanUtil.copyProperties(circle, oldCircle);
-                circleDao.update(oldCircle);
-            } else {
-                circle.setCreateUser(user);
-                circle.setCreateTime(new Date());
-                circle.setState(1);
-                circleDao.add(circle);
+        Set<JoinUserCircle> joinUserCircles = new HashSet<JoinUserCircle>();
+        String[] uidArrs = StringUtils.splitByWholeSeparator(uids, ",");
+        for (String uid : uidArrs) {
+            User u = userDao.get(User.class, Integer.parseInt(uid));
+            if (null == u) {
+                return ResponseState.INVALID_ID;
             }
-            return ResponseState.SUCCESS;
-        } else {
+            JoinUserCircle joinUserCircle = new JoinUserCircle();
+            joinUserCircle.setCircle(circle);
+            joinUserCircle.setUser(u);
+            joinUserCircle.setMsgCount(0);
+            joinUserCircles.add(joinUserCircle);
+        }
+
+        if (!uploadPics(request, circle)) {
             return ResponseState.PIC_SAVE_ERR_JSON;
         }
+
+        circle.setCreateUser(user);
+        circle.setCreateTime(new Date());
+        circle.setState(1);
+        circle.setMembers(joinUserCircles);
+        circleDao.add(circle);
+        return ResponseState.SUCCESS;
     }
 
     public String offline(Integer id) {
@@ -189,13 +198,13 @@ public class CircleServiceImpl implements ICircleService {
     public String saveNickName(String phone, Integer cid, String nickName) {
 
         User user = userDao.queryByPhone(phone);
-        if(null == user){
+        if (null == user) {
             return ResponseState.INVALID_PHONE;
         }
 
-        JoinUserCircle joinUserCircle = joinUserCircleDao.getByUCId(user.getId(),cid);
+        JoinUserCircle joinUserCircle = joinUserCircleDao.getByUCId(user.getId(), cid);
 
-        if(null == joinUserCircle){
+        if (null == joinUserCircle) {
             return ResponseState.INVALID_ID;
         }
 
@@ -226,34 +235,51 @@ public class CircleServiceImpl implements ICircleService {
         return circleDao.qCountCircleByid(refId);
     }
 
-    public String exit(String phone , Integer id){
+    public String exit(String phone, Integer id) {
         User user = userDao.queryByPhone(phone);
-        if(user == null){
+        if (user == null) {
             return ResponseState.INVALID_PHONE;
         }
-        Circle  circle = circleDao.get(Circle.class , id);
-        if(circle == null){
+        Circle circle = circleDao.get(Circle.class, id);
+        if (circle == null) {
             return ResponseState.INVALID_ID;
         }
-        JoinUserCircle joinUserCircle = joinUserCircleDao.getByUCId(user.getId() , circle.getId());
-        if(joinUserCircle == null){
+        JoinUserCircle joinUserCircle = joinUserCircleDao.getByUCId(user.getId(), circle.getId());
+        if (joinUserCircle == null) {
             return ResponseState.NOT_JOIN_CIRCLE;
         }
-        joinUserCircleDao.deleteById(user.getId() , circle.getId());
+        joinUserCircleDao.deleteById(user.getId(), circle.getId());
         return ResponseState.SUCCESS;
 
     }
 
     public String viewnickname(String phone, Integer cid) {
         User user = userDao.queryByPhone(phone);
-        if(null == user){
+        if (null == user) {
             return ResponseState.INVALID_PHONE;
         }
-        JoinUserCircle joinUserCircle = joinUserCircleDao.getByUCId(user.getId(),cid);
-        if(null == joinUserCircle){
+        JoinUserCircle joinUserCircle = joinUserCircleDao.getByUCId(user.getId(), cid);
+        if (null == joinUserCircle) {
             return ResponseState.INVALID_ID;
         }
         return ResponseData.getResData(joinUserCircle.getNickName());
+    }
+
+    public String update(HttpServletRequest request, String phone, Circle circle) {
+        User user = userDao.queryByPhone(phone);
+        if(null == user){
+            return ResponseState.INVALID_PHONE;
+        }
+        if(null == circle){
+            return ResponseState.INVALID_ID;
+        }
+        Circle oldCircle = circleDao.get(Circle.class,circle.getId());
+        if(null == oldCircle){
+            return ResponseState.INVALID_ID;
+        }
+        JdbBeanUtil.copyProperties(circle,oldCircle);
+        circleDao.update(oldCircle);
+        return ResponseState.SUCCESS;
     }
 
     /**
@@ -301,7 +327,7 @@ public class CircleServiceImpl implements ICircleService {
         return true;
     }
 
-    public String batchJoin(String phones,int circleId){
+    public String batchJoin(String phones, int circleId) {
         if (phones.contains(",")) {
             String[] phonrArray = phones.split(",");
             Circle circle = circleDao.get(Circle.class, circleId);
@@ -321,14 +347,14 @@ public class CircleServiceImpl implements ICircleService {
                         joinUserCircle.setUser(user);
                         circle.getMembers().add(joinUserCircle);
                         circleDao.update(circle);
-                        } else {
-                            return ResponseState.INVALID_PHONE;
-                        }
+                    } else {
+                        return ResponseState.INVALID_PHONE;
                     }
                 }
-            return  ResponseState.SUCCESS;
-        }else{
-            return  join(phones,circleId);
+            }
+            return ResponseState.SUCCESS;
+        } else {
+            return join(phones, circleId);
         }
     }
 }

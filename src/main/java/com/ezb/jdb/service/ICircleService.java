@@ -22,7 +22,7 @@ public interface ICircleService {
 
     PageResult<Circle> query(PageResult<Circle> pageResult, Integer id, String title, String realName, String state, String startTime, String endTime);
 
-    String save(HttpServletRequest request,String phone, Circle circle);
+    String create(HttpServletRequest request,String phone, Circle circle,String uids);
 
     String offline(Integer id);
 
@@ -40,4 +40,6 @@ public interface ICircleService {
     String exit(String phone, Integer id);
 
     String viewnickname(String phone, Integer cid);
+
+    String update(HttpServletRequest request, String phone, Circle circle);
 }
