@@ -30,7 +30,7 @@ public class CircleMessageControllerTest {
         Circle receiver = new Circle();
         receiver.setId(53);
         CircleMessage message = new CircleMessage();
-        message.setContent("消息内容测试");
+        message.setContent("消息内容测试228888822");
         message.setSender(sender);
         message.setCircle(receiver);
 
@@ -45,7 +45,7 @@ public class CircleMessageControllerTest {
         Circle receiver = new Circle();
         receiver.setId(53);
         CircleMessage message = new CircleMessage();
-        message.setContent("消息内容测试");
+        message.setContent("消息内容测试2222");
         message.setSender(sender);
         message.setCircle(receiver);
 

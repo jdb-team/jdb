@@ -25,24 +25,24 @@ public class MsgNotifyServiceImpl implements IMsgNotifyService {
     public void put(Message message) {
 
         //sender notify
-        MsgNotify senderNotify = msgNotifyDao.query(message.getSender().getId(),message.getReceiver().getId(),null);
+        MsgNotify senderNotify = msgNotifyDao.queryUser(message.getSender().getId(),message.getReceiver().getId());
         if(null == senderNotify){
             senderNotify = new MsgNotify();
         }
-        senderNotify.setCurUser(message.getSender());
-        senderNotify.setCtcUser(message.getReceiver());
+        senderNotify.setCtcUser(message.getSender());
+        senderNotify.setCurUser(message.getReceiver());
         senderNotify.setMsg(message.getContent());
         senderNotify.setType(0);
         senderNotify.setCreateTime(message.getCreateTime());
         msgNotifyDao.saveOrUpdate(senderNotify);
 
         //receiver notify(curuserid,ctc user id, ctc circle)
-        MsgNotify receiveNotify = msgNotifyDao.query(message.getReceiver().getId(),message.getSender().getId(),null);
+        MsgNotify receiveNotify = msgNotifyDao.queryUser2(message.getReceiver().getId(),message.getSender().getId());
         if(null == receiveNotify){
             receiveNotify = new MsgNotify();
         }
-        receiveNotify.setCurUser(message.getReceiver());
-        receiveNotify.setCtcUser(message.getSender());
+        receiveNotify.setCtcUser(message.getReceiver());
+        receiveNotify.setCurUser(message.getSender());
         receiveNotify.setMsg(message.getContent());
         receiveNotify.setType(0);
         receiveNotify.setCreateTime(message.getCreateTime());
@@ -51,11 +51,11 @@ public class MsgNotifyServiceImpl implements IMsgNotifyService {
 
     public void putCircle(CircleMessage circleMessage) {
 
-        MsgNotify senderNotify = msgNotifyDao.query(circleMessage.getSender().getId(),null,circleMessage.getCircle().getId());
+        MsgNotify senderNotify = msgNotifyDao.queryCircle(circleMessage.getSender().getId(),circleMessage.getCircle().getId());
         if(null == senderNotify){
             senderNotify = new MsgNotify();
         }
-        senderNotify.setCurUser(circleMessage.getSender());
+        senderNotify.setCtcUser(circleMessage.getSender());
         senderNotify.setCtcCircle(circleMessage.getCircle());
         senderNotify.setMsg(circleMessage.getContent());
         senderNotify.setType(1);

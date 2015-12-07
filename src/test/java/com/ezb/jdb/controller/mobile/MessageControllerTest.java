@@ -35,7 +35,7 @@ public class MessageControllerTest {
         User receiver = new User();
         receiver.setUsername("10000000043");
         Message message = new Message();
-        message.setContent("消息内容测试");
+        message.setContent("消息内容测试2222");
         message.setSender(sender);
         message.setReceiver(receiver);
         messageController.sendMessage(message);
