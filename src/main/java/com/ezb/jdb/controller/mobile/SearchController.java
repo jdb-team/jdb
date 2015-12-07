@@ -7,6 +7,7 @@ import com.ezb.jdb.model.Friend;
 import com.ezb.jdb.model.Topic;
 import com.ezb.jdb.service.IAtvCmtService;
 import com.ezb.jdb.service.IGlobalService;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,12 +30,9 @@ public class SearchController {
     /**
      * 全站搜索列表
      *
-     * @param phone              当前用户手机号
-     * @param circlePageResult   圈子
-     * @param activityPageResult 活动
-     * @param topicPageResult    话题
-     * @param friendPageResult   好友
-     * @param keyword            查询关键字
+     * @param phone            当前用户手机号
+     * @param searchPageResult 参数封装
+     * @param keyword          查询关键字
      * @return
      */
     @RequestMapping(value = "mobile/global/search")
@@ -42,19 +40,24 @@ public class SearchController {
     @ResponseBody
     String search(
             String phone,
-            PageResult<Circle> circlePageResult,
-            PageResult<Activity> activityPageResult,
-            PageResult<Topic> topicPageResult,
-            PageResult<Friend> friendPageResult,
+            SearchPageResult searchPageResult,
             String keyword) {
 
         return globalServiceImpl.search(
                 phone,
-                circlePageResult,
-                activityPageResult,
-                topicPageResult,
-                friendPageResult,
+                searchPageResult.getCirclePageResult(),
+                searchPageResult.getActivityPageResult(),
+                searchPageResult.getTopicPageResult(),
+                searchPageResult.getFriendPageResult(),
                 keyword
         );
+    }
+
+    @Data
+    class SearchPageResult {
+        private PageResult<Circle> circlePageResult;    //圈子
+        private PageResult<Activity> activityPageResult;//活动
+        private PageResult<Topic> topicPageResult;      //话题
+        private PageResult<Friend> friendPageResult;    //好友
     }
 }

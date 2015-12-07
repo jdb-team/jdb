@@ -33,10 +33,10 @@ public class MAdminConrollerTest {
     @Test
     public void saveorupdate() {
         Admin admin = new Admin();
-        admin.setUsername("usernamexxxx");
-        admin.setPassword("passxxxx");
-        admin.setPhone("2122212");
-        admin.setRealName("realNamexxx");
+        admin.setUsername("spuername");
+        admin.setPassword("123456");
+        admin.setPhone("1000000000022");
+        admin.setRealName("superadmin");
         admin.setLevel(1);
         log.info(mAdminController.saveOrUpdate(admin));
     }

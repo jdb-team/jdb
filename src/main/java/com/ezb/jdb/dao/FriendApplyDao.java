@@ -19,7 +19,7 @@ import java.util.List;
 @Repository
 public class FriendApplyDao extends BaseDao<FriendApply>{
     public PageResult<FriendApply> queryFriendApply(PageResult<FriendApply> pageResult,String phone ){
-        String hql = "from FriendApply f where f.receiver.username = ''{0}''";
+        String hql = "from FriendApply f where f.state=0 and f.receiver.username = ''{0}''";
         return query(MessageFormat.format(hql, phone), pageResult);
     }
 

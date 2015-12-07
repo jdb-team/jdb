@@ -36,6 +36,13 @@ public class SearchControllerTest extends TestCase {
         PageResult<Topic> topicPageResult = new PageResult<Topic>();
         PageResult<Friend> friendPageResult = new PageResult<Friend>();
 
-        log.info(searchController.search("1111111", circlePageResult, activityPageResult,topicPageResult,friendPageResult,"1"));
+        SearchController.SearchPageResult searchPageResult =  searchController.new SearchPageResult();
+
+        searchPageResult.setCirclePageResult(circlePageResult);
+        searchPageResult.setActivityPageResult(activityPageResult);
+        searchPageResult.setTopicPageResult(topicPageResult);
+        searchPageResult.setFriendPageResult(friendPageResult);
+
+        log.info(searchController.search("13327689964",searchPageResult,"1"));
     }
 }

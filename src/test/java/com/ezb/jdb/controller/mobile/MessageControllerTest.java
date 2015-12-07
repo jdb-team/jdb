@@ -3,6 +3,7 @@ package com.ezb.jdb.controller.mobile;
 import com.ezb.jdb.common.PageResult;
 import com.ezb.jdb.controller.mobile.MessageController;
 import com.ezb.jdb.model.Message;
+import com.ezb.jdb.model.MsgNotify;
 import com.ezb.jdb.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -65,5 +66,11 @@ public class MessageControllerTest {
     @Test
     public void delMessage(){
         log.info(messageController.delMessage(3));
+    }
+
+    @Test
+    public void messageNotify(){
+        PageResult<MsgNotify> pageResult = new PageResult<MsgNotify>();
+        log.info(messageController.msgnotify(pageResult,"10000000019"));
     }
 }

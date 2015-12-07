@@ -1,6 +1,7 @@
 package com.ezb.jdb.controller.mobile;
 
 import com.ezb.jdb.common.PageResult;
+import com.ezb.jdb.common.ResponseData;
 import com.ezb.jdb.common.ResponseState;
 import com.ezb.jdb.model.*;
 import com.ezb.jdb.service.IFriendService;
@@ -39,10 +40,8 @@ public class FriendController {
     public
     @ResponseBody
     String queryFriend(PageResult<Friend> pageResult, String phone, String queryWords) {
-        List<Friend> list = friendServiceImpl.queryFriend(
-                pageResult, phone, queryWords).getResultList();
-        User user = userServiceImpl.queryUserByPhone(phone);
-        return FriendView.convert2Json(user,list);
+        PageResult<Friend> pageResult1 = friendServiceImpl.queryFriend(pageResult, phone, queryWords);
+        return ResponseData.getResData(pageResult1);
     }
 
     /**
@@ -99,9 +98,8 @@ public class FriendController {
     public
     @ResponseBody
     String queryUnFriend(PageResult<User> pageResult, String phone, Alumnus alumnus, String orderby) {
-        List<User> list = userServiceImpl.queryUnFriendUser(pageResult, phone, alumnus, orderby).getResultList();
-        User user = userServiceImpl.queryUserByPhone(phone);
-        return FriendView.convertUList2Json(user, list);
+        PageResult<User> pageResult1 = userServiceImpl.queryUnFriendUser(pageResult, phone, alumnus, orderby);
+        return ResponseData.getResData(pageResult1);
     }
 
     /**
@@ -121,8 +119,8 @@ public class FriendController {
         if(null == user){
             return ResponseState.INVALID_PHONE;
         }
-        List<User> list = userServiceImpl.queryAllUser(pageResult, user, alumnus, orderby).getResultList();
-        return FriendView.convertUList2Json(user, list);
+        PageResult<User> pageResult1 = userServiceImpl.queryAllUser(pageResult, user, alumnus, orderby);
+        return ResponseData.getResData(pageResult1);
     }
 
     /**
@@ -141,8 +139,8 @@ public class FriendController {
         if (null == user) {
             return ResponseState.INVALID_PHONE;
         }
-        List<User> list = userServiceImpl.queryNearUsers(pageResult, phone).getResultList();
-        return FriendView.convertUList2Json(user,list);
+        PageResult<User> pageResult1 = userServiceImpl.queryNearUsers(pageResult, phone);
+        return ResponseData.getResData(pageResult1);
     }
 
     /**

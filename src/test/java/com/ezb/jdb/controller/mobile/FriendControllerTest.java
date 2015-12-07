@@ -37,10 +37,6 @@ public class FriendControllerTest {
         pageResult.setPageSize(10);
         log.info(friendController.queryFriend(pageResult, "10000000003", null));
         log.info(friendController.queryFriend(pageResult, "10000000003", null));
-
-        log.info(friendController.queryFriend(pageResult, "10000000006",null));
-        log.info(friendController.queryFriend(pageResult, "10000000006","realname64"));
-        log.info(friendController.queryFriend(pageResult, "10000000006","realname44"));
     }
 
     @Test

@@ -1,5 +1,7 @@
 package com.ezb.jdb.service.impl;
 
+import com.ezb.jdb.common.PageResult;
+import com.ezb.jdb.common.ResponseData;
 import com.ezb.jdb.common.ResponseState;
 import com.ezb.jdb.dao.CircleDao;
 import com.ezb.jdb.dao.CircleMessageDao;
@@ -19,9 +21,9 @@ import java.util.Date;
  * Created by Administrator on 2015/11/28.
  */
 @Service
-public class CircleMessageServiceImpl implements ICircleMessageService{
+public class CircleMessageServiceImpl implements ICircleMessageService {
     @Resource
-    private  UserDao userDao;
+    private UserDao userDao;
 
     @Resource
     private CircleDao circleDao;
@@ -35,14 +37,14 @@ public class CircleMessageServiceImpl implements ICircleMessageService{
     @Resource
     private IMsgNotifyService msgNotifyServiceImpl;
 
-    public String sendCircleMessage(CircleMessage circleMessage){
-        if (circleMessage.getSender() == null || circleMessage.getCircle() == null){
+    public String sendCircleMessage(CircleMessage circleMessage) {
+        if (circleMessage.getSender() == null || circleMessage.getCircle() == null) {
             return ResponseState.FIAL;
         }
 
         User sender = userDao.queryByPhone(circleMessage.getSender().getUsername());
         //查找圈子
-        Circle receiver = circleDao.get(Circle.class,circleMessage.getCircle().getId());
+        Circle receiver = circleDao.get(Circle.class, circleMessage.getCircle().getId());
         if (sender == null || receiver == null) {
             return ResponseState.FIAL;
         }
@@ -52,20 +54,25 @@ public class CircleMessageServiceImpl implements ICircleMessageService{
 
         circleMessageDao.add(circleMessage);
         //sender和receiver对应关系的表的msg_count加一
-        joinUserCircleDao.updateMsgCount(sender.getId(),receiver.getId());
+        joinUserCircleDao.updateMsgCount(sender.getId(), receiver.getId());
         msgNotifyServiceImpl.putCircle(circleMessage);
         return ResponseState.SUCCESS;
     }
 
-    public  int setupZero(CircleMessage circleMessage){
-        if (circleMessage.getSender() == null || circleMessage.getCircle() == null){
+    public int setupZero(CircleMessage circleMessage) {
+        if (circleMessage.getSender() == null || circleMessage.getCircle() == null) {
             return 0;
         }
 //        User sender = userDao.queryByPhone(circleMessage.getSender().getUsername());
 //        Circle receiver = circleDao.get(Circle.class,circleMessage.getCircle().getId());
-        if(circleMessage.getSender().getId() == null || circleMessage.getCircle().getId() == null){
+        if (circleMessage.getSender().getId() == null || circleMessage.getCircle().getId() == null) {
             return 0;
         }
-        return joinUserCircleDao.updateToZero(circleMessage.getSender().getId(),circleMessage.getCircle().getId());
+        return joinUserCircleDao.updateToZero(circleMessage.getSender().getId(), circleMessage.getCircle().getId());
+    }
+
+    public String query(PageResult<CircleMessage> pageResult, Integer cid) {
+        pageResult =  circleMessageDao.query(pageResult,cid);
+        return ResponseData.getResData(pageResult);
     }
 }
