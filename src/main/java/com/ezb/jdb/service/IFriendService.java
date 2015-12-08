@@ -47,7 +47,7 @@ public interface IFriendService {
      */
     String queryFriendApply(PageResult<FriendApply> pageResult, String phone);
 
-    String confireFriend(String phone1, String phone2);
+    String confireFriend(String phone1, String phone2,Integer isAllow);
 
     /**
      * 解除好友关系

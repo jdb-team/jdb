@@ -142,14 +142,21 @@ public class FriendServiceImpl implements IFriendService {
         return ResponseData.getResData(friendApplyDao.queryFriendApply(pageResult, phone));
     }
 
-    public String confireFriend(String phone1, String phone2) {
+    public String confireFriend(String phone1, String phone2,Integer isAllow) {
         FriendApply friend = friendApplyDao.queryBy2Phone(phone1, phone2);
         if (null == friend) {
             return ResponseState.FRIEND_APPLY_FRIST;
         } else {
-            friend.setState(1);
-            friendApplyDao.update(friend);
-            addFriend(phone1, phone2);
+            if(1 == isAllow){
+                friend.setState(1);
+                friendApplyDao.update(friend);
+                addFriend(phone1, phone2);
+            }
+
+            if(0 == isAllow){
+                friend.setState(0);
+                friendApplyDao.update(friend);
+            }
             return ResponseState.SUCCESS;
         }
     }

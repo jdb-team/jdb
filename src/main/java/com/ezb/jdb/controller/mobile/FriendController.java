@@ -61,13 +61,14 @@ public class FriendController {
      *
      * @param phone1
      * @param phone2
+     * @param isAllow 是否同意 1同意 0 拒绝
      * @return
      */
     @RequestMapping(value = "mobile/friend/confirefriend2phone")
     public
     @ResponseBody
-    String confireFriend2Phone(String phone1, String phone2) {
-        return friendServiceImpl.confireFriend(phone1, phone2);
+    String confireFriend2Phone(String phone1, String phone2,Integer isAllow) {
+        return friendServiceImpl.confireFriend(phone1, phone2,isAllow);
     }
 
     /**
