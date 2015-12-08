@@ -129,7 +129,11 @@ public class CircleServiceImpl implements ICircleService {
         }
         Set<JoinUserCircle> joinUserCircles = new HashSet<JoinUserCircle>();
         String[] uidArrs = StringUtils.splitByWholeSeparator(uids, ",");
-        for (String uid : uidArrs) {
+        Set<String> idSet = new HashSet<String>();
+        for(String uid : uidArrs){
+            idSet.add(uid);
+        }
+        for (String uid : idSet) {
             User u = userDao.get(User.class, Integer.parseInt(uid));
             if (null == u) {
                 return ResponseState.INVALID_ID;

@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.util.Date;
 
 /**
  * 圈子
@@ -110,14 +111,14 @@ public class CircleControllerTest {
 
     @Test
     @Rollback(false)
-    public void save() {
+    public void create() {
         Circle circle = new Circle();
         circle.setTitle("1111");
-        circle.setPicPath("uploadfiles/20151208/20151208091411264/20150928154649868.jpg");
         circle.setIntroduce("oooo");
+        circle.setCreateTime(new Date());
         String phone = "13327689964";
-        String uids = "9,18";
-        log.info(circleController.save(phone,circle,uids));
+        String uids = "1,1";
+        log.info(circleController.create(phone,circle,uids));
 
     }
 }

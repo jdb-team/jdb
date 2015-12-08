@@ -41,7 +41,7 @@ public class CircleController {
     @RequestMapping(value = "mobile/circle/create")
     public
     @ResponseBody
-    String save(String phone, Circle circle,String uids) {
+    String create(String phone, Circle circle,String uids) {
         return circleServiceImpl.create(phone, circle,uids);
     }
 
@@ -53,7 +53,7 @@ public class CircleController {
     @RequestMapping(value = "mobile/circle/update")
     public
     @ResponseBody
-    String save(HttpServletRequest request, String phone, Circle circle) {
+    String update(HttpServletRequest request, String phone, Circle circle) {
         return circleServiceImpl.update(request, phone, circle);
     }
 
