@@ -40,8 +40,8 @@ public class FriendController {
     public
     @ResponseBody
     String queryFriend(PageResult<Friend> pageResult, String phone, String queryWords) {
-        PageResult<Friend> pageResult1 = friendServiceImpl.queryFriend(pageResult, phone, queryWords);
-        return ResponseData.getResData(pageResult1);
+        pageResult = friendServiceImpl.queryFriend(pageResult, phone, queryWords);
+        return ResponseData.getResData(pageResult);
     }
 
     /**

@@ -35,8 +35,7 @@ public class FriendControllerTest {
         PageResult<Friend> pageResult = new PageResult<Friend>();
         pageResult.setCurPage(1);
         pageResult.setPageSize(10);
-        log.info(friendController.queryFriend(pageResult, "10000000003", null));
-        log.info(friendController.queryFriend(pageResult, "10000000003", null));
+        log.info(friendController.queryFriend(pageResult, "13327689964", null));
     }
 
     @Test
