@@ -30,7 +30,7 @@ public class FriendDao extends BaseDao<Friend> {
                 " and o.user.state=1 ";
 
         if(!StringUtils.isEmpty(queryWords)){
-            hql += " and (o.user.alumnus.realName like ''%{2}%'' or o.friend.alumnus.realName like ''%{2}%'')";
+            hql += " and (o.user.alumnus.realName like ''%{1}%'' or o.friend.alumnus.realName like ''%{1}%'')";
         }
 
         return query(MessageFormat.format(hql,phone,queryWords),pageResult);
