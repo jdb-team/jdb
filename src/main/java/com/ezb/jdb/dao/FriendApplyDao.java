@@ -35,8 +35,13 @@ public class FriendApplyDao extends BaseDao<FriendApply>{
 
     public FriendApply queryBy2Phone(String phone1, String phone2){
         String hql = "from FriendApply f where (f.sender.username=''{0}'' and f.receiver.username=''{1}'' " +
-                "or f.sender.username=''{1}'' and f.receiver.username=''{0}'' and f.state=1 )";
-        return queryUnique(MessageFormat.format(hql,phone1,phone2));
+                "or f.sender.username=''{1}'' and f.receiver.username=''{0}'' and f.state=1 ) order by f.createDate desc";
+        List<FriendApply> list =  query(MessageFormat.format(hql,phone1,phone2));
+        if(null != list && list.size() > 0){
+            return list.get(0);
+        }else{
+            return null;
+        }
     }
 
     public int release(FriendApply friend) {

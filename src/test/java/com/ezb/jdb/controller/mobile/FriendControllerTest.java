@@ -47,7 +47,7 @@ public class FriendControllerTest {
     @Test
     @Rollback(false)
     public void confirFriend2Phone(){
-        log.info(friendController.confireFriend2Phone("10000000001", "10000000002"));
+        log.info(friendController.confireFriend2Phone("10000000001", "10000000002",1));
     }
 
     @Test
@@ -130,11 +130,11 @@ public class FriendControllerTest {
     public void confireFriend2Phone(){
         String phone1 = "10000000001";
         String phone2 = "10000000002";
-        log.info(friendController.confireFriend2Phone(phone1 , phone2));
+        log.info(friendController.confireFriend2Phone(phone1 , phone2,1));
 
-        String phone3 = "10000000010";
-        String phone4 = "10000000011";
-        log.info(friendController.confireFriend2Phone(phone3 , phone4));
+        String phone3 = "13327689964";
+        String phone4 = "10000000010";
+        log.info(friendController.confireFriend2Phone(phone3 , phone4,1));
     }
 
     @Test
