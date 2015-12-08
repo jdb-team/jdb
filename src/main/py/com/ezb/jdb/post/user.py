@@ -23,8 +23,10 @@ def perfinfo(token):
     """完善个人信息"""
     url = "http://localhost:8088/jdb/mobile/user/perfinfo"
     register_openers()
-    params = {"phone": "1111111", "pic1": open("aa.png", "rb"),
-              "pic2": open("bb.png", "rb")}
+    params = {
+        "phone": "13327689964",
+        "headPicPath":"aaa"
+    }
     datagen, headers = multipart_encode(params)
     request = urllib2.Request(url, datagen, headers)
     request.add_header("x-access-token", token)
@@ -32,4 +34,4 @@ def perfinfo(token):
 
 
 if __name__ == '__main__':
-    print login()
+    print perfinfo(login())

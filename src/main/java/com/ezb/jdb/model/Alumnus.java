@@ -88,6 +88,9 @@ public class Alumnus {
     }
 
     public Integer getUserId(){
+        if(null == user){
+            return null;
+        }
         return user.getId();
     }
 }
