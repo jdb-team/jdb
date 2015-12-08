@@ -106,4 +106,18 @@ public class CircleControllerTest {
     public void viewnickName(){
         log.info(circleController.viewnickname("10000000002",18));
     }
+
+
+    @Test
+    @Rollback(false)
+    public void save() {
+        Circle circle = new Circle();
+        circle.setTitle("1111");
+        circle.setPicPath("uploadfiles/20151208/20151208091411264/20150928154649868.jpg");
+        circle.setIntroduce("oooo");
+        String phone = "13327689964";
+        String uids = "9,18";
+        log.info(circleController.save(phone,circle,uids));
+
+    }
 }

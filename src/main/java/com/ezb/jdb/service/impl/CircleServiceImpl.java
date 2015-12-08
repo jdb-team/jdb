@@ -122,7 +122,7 @@ public class CircleServiceImpl implements ICircleService {
         return circleDao.query(pageResult, id, title, realName, state, startTime, endTime);
     }
 
-    public String create(HttpServletRequest request, String phone, Circle circle, String uids) {
+    public String create(String phone, Circle circle, String uids) {
         User user = userDao.queryByPhone(phone);
         if (null == user) {
             return ResponseState.INVALID_PHONE;
@@ -139,10 +139,6 @@ public class CircleServiceImpl implements ICircleService {
             joinUserCircle.setUser(u);
             joinUserCircle.setMsgCount(0);
             joinUserCircles.add(joinUserCircle);
-        }
-
-        if (!uploadPics(request, circle)) {
-            return ResponseState.PIC_SAVE_ERR_JSON;
         }
 
         circle.setCreateUser(user);

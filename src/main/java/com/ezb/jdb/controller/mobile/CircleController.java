@@ -41,8 +41,8 @@ public class CircleController {
     @RequestMapping(value = "mobile/circle/create")
     public
     @ResponseBody
-    String save(HttpServletRequest request, String phone, Circle circle,String uids) {
-        return circleServiceImpl.create(request, phone, circle,uids);
+    String save(String phone, Circle circle,String uids) {
+        return circleServiceImpl.create(phone, circle,uids);
     }
 
     /**
