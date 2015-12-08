@@ -4,6 +4,7 @@ import com.ezb.jdb.common.PageResult;
 import com.ezb.jdb.model.Friend;
 import com.ezb.jdb.model.FriendApply;
 import com.ezb.jdb.model.Topic;
+import com.ezb.jdb.model.User;
 
 /**
  * 通讯录
@@ -12,7 +13,7 @@ import com.ezb.jdb.model.Topic;
  */
 public interface IFriendService {
 
-    PageResult<Friend> queryFriend(PageResult<Friend> pageResult, String phone,
+    String queryFriend(PageResult<User> pageResult, String phone,
                                    String queryWords);
 
     /**

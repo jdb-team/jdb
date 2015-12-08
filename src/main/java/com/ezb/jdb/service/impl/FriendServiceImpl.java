@@ -17,7 +17,9 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 通讯录
@@ -36,10 +38,29 @@ public class FriendServiceImpl implements IFriendService {
     @Resource
     private UserDao userDao;
 
-    public PageResult<Friend> queryFriend(PageResult<Friend> pageResult, String phone,
-                                          String queryWords) {
+    public String queryFriend(PageResult<User> pageResult, String phone,
+                              String queryWords) {
 
-        return friendDao.queryFriend(pageResult, phone, queryWords);
+        if (userDao.queryByPhone(phone) == null) {
+            return ResponseState.INVALID_PHONE;
+        }
+
+        PageResult<Friend> friendPageResult = new PageResult<Friend>();
+        friendPageResult.setCurPage(pageResult.getCurPage());
+        friendPageResult.setPageSize(pageResult.getPageSize());
+        friendPageResult = friendDao.queryFriend(friendPageResult, phone, queryWords);
+
+        List<User> list = new ArrayList<User>();
+        for (Friend friend : friendPageResult.getResultList()) {
+            if (friend.getUser().getUsername().equals(phone)) {
+                list.add(friend.getUser());
+            } else {
+                list.add(friend.getFriend());
+            }
+        }
+        pageResult.setResultList(list);
+
+        return ResponseData.getResData(pageResult);
     }
 
     public String confireFriend(Integer id) {
@@ -143,12 +164,12 @@ public class FriendServiceImpl implements IFriendService {
                 Integer receverId = friend.getReceiver().getId();
                 if (friendDao.release(senderId, receverId) > 0) {
                     return ResponseState.SUCCESS;
-                }else {
-                    return  ResponseState.FAIL;
+                } else {
+                    return ResponseState.FAIL;
                 }
 
-            }else {
-                return  ResponseState.FAIL;
+            } else {
+                return ResponseState.FAIL;
             }
 
         }
